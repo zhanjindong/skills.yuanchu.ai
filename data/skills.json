@@ -203,5 +203,134 @@
     "featured": false,
     "createdAt": "2026-03-24",
     "updatedAt": "2026-03-28"
+  },
+  {
+    "id": "ai-weekly-briefing",
+    "name": "AI 资讯简报",
+    "icon": "📰",
+    "summary": "搜索最新 AI 前沿资讯，分类整理生成精美 H5 网页简报",
+    "description": "skills/ai-weekly-briefing/README.md",
+    "category": "writing",
+    "tags": ["ai-news", "briefing", "h5", "automation"],
+    "author": {
+      "name": "Jackie Zhan",
+      "link": "https://yuanchu.ai"
+    },
+    "formats": [
+      {
+        "framework": "claude-code",
+        "label": "Claude Code",
+        "file": "skills/ai-weekly-briefing/claude-code.md",
+        "description": "CLAUDE.md 斜杠命令格式"
+      },
+      {
+        "framework": "codex",
+        "label": "Codex",
+        "file": "skills/ai-weekly-briefing/codex.md",
+        "description": "Codex 智能体提示词格式"
+      },
+      {
+        "framework": "openclaw",
+        "label": "OpenClaw",
+        "file": "skills/ai-weekly-briefing/openclaw.json",
+        "description": "OpenClaw 插件格式"
+      }
+    ],
+    "examples": [
+      {
+        "input": "生成本周 AI 前沿周报，给销售团队看",
+        "output": "生成包含风云故事、技术前沿、行业专题等分类的 H5 网页简报，每条新闻附带谈资要点话术模板"
+      }
+    ],
+    "links": {},
+    "featured": true,
+    "createdAt": "2026-03-09",
+    "updatedAt": "2026-03-28"
+  },
+  {
+    "id": "article-generator",
+    "name": "技术文章生成",
+    "icon": "✍️",
+    "summary": "自动搜索 AI 领域热点，生成深入浅出的技术文章 HTML 页面",
+    "description": "skills/article-generator/README.md",
+    "category": "writing",
+    "tags": ["article", "blog", "ai", "content-creation"],
+    "author": {
+      "name": "Jackie Zhan",
+      "link": "https://yuanchu.ai"
+    },
+    "formats": [
+      {
+        "framework": "claude-code",
+        "label": "Claude Code",
+        "file": "skills/article-generator/claude-code.md",
+        "description": "CLAUDE.md 斜杠命令格式"
+      },
+      {
+        "framework": "codex",
+        "label": "Codex",
+        "file": "skills/article-generator/codex.md",
+        "description": "Codex 智能体提示词格式"
+      },
+      {
+        "framework": "openclaw",
+        "label": "OpenClaw",
+        "file": "skills/article-generator/openclaw.json",
+        "description": "OpenClaw 插件格式"
+      }
+    ],
+    "examples": [
+      {
+        "input": "写一篇关于 MCP 协议的技术文章",
+        "output": "生成一篇 3000-5000 字的深度技术文章 HTML 页面，含目录导航、SVG 图表、代码示例和参考资料"
+      }
+    ],
+    "links": {},
+    "featured": true,
+    "createdAt": "2026-03-21",
+    "updatedAt": "2026-03-28"
+  },
+  {
+    "id": "slide-generator",
+    "name": "幻灯片生成",
+    "icon": "🎞️",
+    "summary": "根据主题生成精美的单文件 HTML 幻灯片演示文稿",
+    "description": "skills/slide-generator/README.md",
+    "category": "writing",
+    "tags": ["slides", "presentation", "html", "ppt"],
+    "author": {
+      "name": "Jackie Zhan",
+      "link": "https://yuanchu.ai"
+    },
+    "formats": [
+      {
+        "framework": "claude-code",
+        "label": "Claude Code",
+        "file": "skills/slide-generator/claude-code.md",
+        "description": "CLAUDE.md 斜杠命令格式"
+      },
+      {
+        "framework": "codex",
+        "label": "Codex",
+        "file": "skills/slide-generator/codex.md",
+        "description": "Codex 智能体提示词格式"
+      },
+      {
+        "framework": "openclaw",
+        "label": "OpenClaw",
+        "file": "skills/slide-generator/openclaw.json",
+        "description": "OpenClaw 插件格式"
+      }
+    ],
+    "examples": [
+      {
+        "input": "做一个介绍 RAG 技术的幻灯片，给工程师看",
+        "output": "生成 20-30 张卡片式 HTML 幻灯片，含封面、章节导航、多种布局组件和渐入动画"
+      }
+    ],
+    "links": {},
+    "featured": false,
+    "createdAt": "2026-03-13",
+    "updatedAt": "2026-03-28"
   }
 ]

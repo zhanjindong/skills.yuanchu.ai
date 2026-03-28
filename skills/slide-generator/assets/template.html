@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Slide 模板演示</title>
+<style>
+:root{
+  --bg:#f1f5f9;--card:#fff;--text:#1e293b;--text2:#64748b;
+  --blue:#3b82f6;--purple:#8b5cf6;--green:#10b981;--amber:#f59e0b;--red:#ef4444;
+  --border:#e2e8f0;--radius:12px;--bg-subtle:#f8fafc;
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:100%;height:100%;overflow:hidden;font-family:var(--font);background:var(--bg);color:var(--text);}
+.slide{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .4s;}
+.slide.active{opacity:1;pointer-events:auto;}
+.slide-inner{width:90%;max-width:1100px;max-height:88vh;overflow-y:auto;padding:20px;}
+.slide-inner::-webkit-scrollbar{width:4px;}
+.slide-inner::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:2px;}
+
+/* Typography */
+h1{font-size:2.6em;font-weight:800;line-height:1.2;margin-bottom:.3em;}
+h2{font-size:1.9em;font-weight:700;margin-bottom:.5em;color:var(--text);}
+h3{font-size:1.25em;font-weight:600;margin-bottom:.4em;}
+p,.desc{font-size:1.05em;line-height:1.7;color:var(--text2);}
+.section-tag{display:inline-block;font-size:.8em;font-weight:600;padding:4px 14px;border-radius:20px;margin-bottom:12px;color:#fff;}
+.tag-blue{background:var(--blue);}
+.tag-purple{background:var(--purple);}
+.tag-green{background:var(--green);}
+.tag-amber{background:var(--amber);}
+.tag-red{background:var(--red);}
+
+/* Cover */
+.cover-slide .slide-inner{text-align:center;}
+.cover-slide h1{font-size:3.2em;background:linear-gradient(135deg,var(--blue),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.cover-slide .subtitle{font-size:1.4em;color:var(--text2);margin-top:8px;}
+.cover-slide .meta{margin-top:30px;font-size:.9em;color:#94a3b8;}
+
+/* Cards */
+.grid{display:grid;gap:16px;margin:16px 0;}
+.g2{grid-template-columns:1fr 1fr;}
+.g3{grid-template-columns:1fr 1fr 1fr;}
+.g4{grid-template-columns:1fr 1fr 1fr 1fr;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;transition:box-shadow .2s;}
+.card h3{margin-bottom:6px;}
+.card p,.card .desc{font-size:.95em;}
+.card-icon{font-size:1.8em;margin-bottom:8px;}
+
+/* Highlight box */
+.highlight{background:linear-gradient(135deg,#eff6ff,#f0f0ff);border-left:4px solid var(--blue);padding:16px 20px;border-radius:0 var(--radius) var(--radius) 0;margin:16px 0;font-size:1.05em;line-height:1.6;}
+.highlight strong{color:var(--blue);}
+
+/* Tables */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:12px 0;}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--border);}
+th{background:var(--bg-subtle);font-weight:600;white-space:nowrap;}
+td:first-child{font-weight:600;white-space:nowrap;}
+tr:hover td{background:var(--bg-subtle);}
+
+/* Comparison columns */
+.vs{display:grid;grid-template-columns:1fr 60px 1fr;gap:0;align-items:start;margin:16px 0;}
+.vs-col{padding:20px;border-radius:var(--radius);}
+.vs-left{background:#fef2f2;border:1px solid #fecaca;}
+.vs-right{background:#f0fdf4;border:1px solid #bbf7d0;}
+.vs-mid{display:flex;align-items:center;justify-content:center;font-size:1.6em;font-weight:700;color:var(--text2);align-self:center;}
+.vs-col h3{margin-bottom:10px;}
+.vs-col ul{padding-left:18px;font-size:.95em;line-height:1.8;}
+
+/* Definition box */
+.def-box{background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:#fff;border-radius:var(--radius);padding:30px 36px;margin:20px 0;text-align:center;}
+.def-box h2{color:#fff;font-size:1.6em;}
+.def-box .formula{font-size:1.15em;margin-top:12px;line-height:1.8;opacity:.95;}
+
+/* SVG Animations */
+.anim-wrap{display:flex;justify-content:center;margin:12px 0;}
+.anim-wrap svg{max-width:100%;height:auto;}
+svg text{font-family:var(--font);font-size:13px;fill:var(--text);}
+svg .node{fill:#e2e8f0;stroke:#94a3b8;stroke-width:1.2;transition:fill .3s;}
+svg .arrow-line{stroke:#cbd5e1;stroke-width:1.2;fill:none;marker-end:url(#ah);}
+svg .label{font-size:12px;fill:var(--text2);text-anchor:middle;}
+
+/* Animation keyframes */
+@keyframes nodeGlow{0%,100%{fill:#e2e8f0;stroke:#94a3b8;}30%,70%{fill:var(--glow-color,var(--blue));stroke:var(--glow-color,var(--blue));}}
+@keyframes lineFlow{0%,100%{stroke:#cbd5e1;stroke-width:1.2;}30%,70%{stroke:var(--blue);stroke-width:2;}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(15px);}to{opacity:1;transform:translateY(0);}}
+@keyframes pulse{0%,100%{opacity:.6;}50%{opacity:1;}}
+@keyframes checkMark{from{stroke-dashoffset:20;}to{stroke-dashoffset:0;}}
+@keyframes bubbleIn{from{opacity:0;transform:scale(.8) translateY(10px);}to{opacity:1;transform:scale(1) translateY(0);}}
+
+.slide.active .fade-in{animation:fadeInUp .5s both;}
+.slide.active .fade-in-1{animation-delay:.1s;}
+.slide.active .fade-in-2{animation-delay:.2s;}
+.slide.active .fade-in-3{animation-delay:.3s;}
+.slide.active .fade-in-4{animation-delay:.4s;}
+.slide.active .fade-in-5{animation-delay:.5s;}
+
+/* Navigation */
+.nav-bar{position:fixed;bottom:0;left:0;right:0;height:48px;background:rgba(255,255,255,.9);backdrop-filter:blur(8px);border-top:1px solid var(--border);display:flex;align-items:center;padding:0 20px;z-index:100;}
+.progress-track{flex:1;height:4px;background:#e2e8f0;border-radius:2px;margin:0 16px;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--purple));border-radius:2px;transition:width .3s;}
+.nav-btn{width:36px;height:36px;border:none;background:#f1f5f9;border-radius:8px;cursor:pointer;font-size:1.1em;display:flex;align-items:center;justify-content:center;color:var(--text2);transition:background .2s;}
+.nav-btn:hover{background:#e2e8f0;}
+.page-num{font-size:.8em;color:var(--text2);min-width:60px;text-align:center;}
+
+/* Cover links */
+.cover-link{cursor:pointer;transition:color .2s;}
+.cover-link:hover{color:var(--blue);text-decoration:underline;}
+
+/* Navigation Menu */
+#navMenu{display:none;position:fixed;bottom:56px;right:20px;background:#fff;border-radius:var(--radius);box-shadow:0 4px 24px rgba(0,0,0,.15);padding:12px 0;z-index:200;min-width:220px;max-height:70vh;overflow-y:auto;}
+#navMenu.show{display:block;}
+#navMenu .nav-item{display:block;padding:8px 24px;font-size:.9em;color:var(--text);cursor:pointer;transition:background .15s;white-space:nowrap;}
+#navMenu .nav-item:hover{background:var(--bg-subtle);color:var(--blue);}
+#navMenu .nav-item.sub{padding-left:44px;font-size:.85em;color:var(--text2);}
+#navMenu .nav-divider{height:1px;background:var(--border);margin:6px 0;}
+
+/* Pyramid */
+.pyramid{text-align:center;margin:16px 0;}
+.pyramid-level{margin:0 auto;padding:12px;color:#fff;font-weight:600;font-size:.9em;border-radius:6px;margin-bottom:6px;}
+.pyr-1{width:30%;background:linear-gradient(135deg,var(--blue),var(--purple));}
+.pyr-2{width:55%;background:linear-gradient(135deg,var(--purple),var(--amber));}
+.pyr-3{width:80%;background:linear-gradient(135deg,var(--amber),var(--green));}
+
+/* Flow diagram */
+.flow{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:12px 0;font-size:.9em;}
+.flow-node{background:var(--blue);color:#fff;padding:6px 14px;border-radius:8px;font-weight:600;}
+.flow-arrow{color:var(--text2);font-size:1.2em;}
+.flow-node.green{background:var(--green);}
+.flow-node.purple{background:var(--purple);}
+.flow-node.amber{background:var(--amber);}
+.flow-node.red{background:var(--red);}
+.flow-node.gray{background:#94a3b8;}
+
+/* Bullet list */
+ul.bullet{padding-left:20px;margin:10px 0;line-height:1.9;font-size:.98em;}
+ul.bullet li{color:var(--text2);}
+ul.bullet li strong{color:var(--text);}
+
+/* Compact */
+.compact p,.compact .desc{font-size:.9em;line-height:1.5;}
+.compact h2{font-size:1.4em;margin-bottom:.3em;}
+.compact h3{font-size:1.05em;}
+.compact .card{padding:12px;}
+.compact table{font-size:.78em;}
+.compact ul.bullet{font-size:.88em;line-height:1.6;}
+.compact .anim-wrap{margin:10px 0;}
+.compact .highlight{margin:10px 0;padding:12px 16px;font-size:.95em;}
+.compact .grid{margin:10px 0;gap:10px;}
+.compact .section-tag{margin-bottom:8px;}
+.compact .desc{margin-bottom:8px;}
+
+/* Scenario cards */
+.scenario-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0;}
+.scenario-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;}
+.scenario-card h4{font-size:.95em;margin-bottom:6px;color:var(--blue);}
+.scenario-card p{font-size:.85em;line-height:1.6;color:var(--text2);}
+
+/* Navigation disabled state */
+.nav-btn:disabled{opacity:.35;cursor:default;pointer-events:none;}
+
+/* Mobile responsive */
+@media(max-width:768px){
+  h1{font-size:1.8em;}
+  h2{font-size:1.4em;}
+  h3{font-size:1.05em;}
+  .cover-slide h1{font-size:2em !important;}
+  .cover-slide .subtitle{font-size:1.1em;}
+  .g2,.g3,.g4,.scenario-grid{grid-template-columns:1fr;}
+  .vs{grid-template-columns:1fr;gap:10px;}
+  .vs-mid{font-size:1.2em;padding:4px 0;}
+  table{font-size:.72em;}
+  .compact table{font-size:.68em;}
+  .slide-inner{width:95%;padding:14px;}
+  .nav-bar{padding:0 10px;}
+  .flow{font-size:.8em;}
+  .pyramid-level{font-size:.8em;padding:10px;}
+}
+</style>
+</head>
+<body>
+
+<!-- Shared SVG defs -->
+<svg style="position:absolute;width:0;height:0;">
+<defs>
+<marker id="ah" markerWidth="10" markerHeight="7" refX="8" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L10,3.5 L0,7 Z" fill="context-stroke"/></marker>
+</defs>
+</svg>
+
+<!-- ==================== SLIDE 1: 封面 ==================== -->
+<div class="slide cover-slide active" id="s1">
+<div class="slide-inner">
+<h1>Slide 模板演示</h1>
+<p class="subtitle">组件速查 · 即插即用</p>
+<div class="meta" style="margin-top:40px">
+<div style="display:flex;gap:40px;justify-content:center;margin-top:16px;font-size:.95em;color:#94a3b8;">
+<span class="cover-link" onclick="go(1)">文字组件</span><span>·</span>
+<span class="cover-link" onclick="go(2)">布局组件</span><span>·</span>
+<span class="cover-link" onclick="go(3)">表格与列表</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ==================== SLIDE 2: 文字组件 ==================== -->
+<div class="slide" id="s2">
+<div class="slide-inner">
+<span class="section-tag tag-blue">一、文字组件</span>
+<h2>卡片网格 + 高亮框</h2>
+<div class="grid g3">
+<div class="card fade-in fade-in-1">
+<div class="card-icon">🎨</div>
+<h3>卡片 (card)</h3>
+<p class="desc">基础内容块，支持图标、标题、描述。可组合成 g2/g3/g4 网格布局。</p>
+</div>
+<div class="card fade-in fade-in-2">
+<div class="card-icon">🏷️</div>
+<h3>章节标签 (section-tag)</h3>
+<p class="desc">用 tag-blue/purple/green/amber/red 按章循环配色，标识当前章节。</p>
+</div>
+<div class="card fade-in fade-in-3">
+<div class="card-icon">✨</div>
+<h3>渐入动画 (fade-in)</h3>
+<p class="desc">为元素添加 fade-in fade-in-N（N=1~5）类，激活时依次淡入上移。</p>
+</div>
+</div>
+<div class="highlight fade-in fade-in-4">
+<strong>高亮框 highlight：</strong>用于关键结论或定义，左侧蓝色竖线，渐变背景，视觉权重最高。
+</div>
+</div>
+</div>
+
+<!-- ==================== SLIDE 3: 布局组件 ==================== -->
+<div class="slide" id="s3">
+<div class="slide-inner">
+<span class="section-tag tag-purple">二、布局组件</span>
+<h2>对比布局 + 流程图</h2>
+<div class="vs">
+<div class="vs-col vs-left">
+<h3>❌ 不使用模板</h3>
+<ul>
+<li>CSS 不一致</li>
+<li>导航逻辑重复写</li>
+<li>移动端需手动适配</li>
+</ul>
+</div>
+<div class="vs-mid">VS</div>
+<div class="vs-col vs-right">
+<h3>✅ 使用本模板</h3>
+<ul>
+<li>风格统一，即插即用</li>
+<li>导航/进度条开箱即用</li>
+<li>响应式已内置</li>
+</ul>
+</div>
+</div>
+<div class="flow fade-in fade-in-3">
+<div class="flow-node">输入主题</div>
+<div class="flow-arrow">→</div>
+<div class="flow-node purple">确认大纲</div>
+<div class="flow-arrow">→</div>
+<div class="flow-node green">生成 HTML</div>
+<div class="flow-arrow">→</div>
+<div class="flow-node amber">浏览器预览</div>
+</div>
+</div>
+</div>
+
+<!-- ==================== SLIDE 4: 表格与列表 ==================== -->
+<div class="slide" id="s4">
+<div class="slide-inner compact">
+<span class="section-tag tag-green">三、表格与列表</span>
+<h2>组件速查表</h2>
+<table>
+<thead>
+<tr><th>组件</th><th>class</th><th>适用场景</th></tr>
+</thead>
+<tbody>
+<tr><td>卡片网格</td><td>.grid.g2/g3/g4 + .card</td><td>并列概念、功能列表</td></tr>
+<tr><td>高亮框</td><td>.highlight</td><td>关键结论、定义</td></tr>
+<tr><td>定义框</td><td>.def-box</td><td>单页核心公式/定义</td></tr>
+<tr><td>对比布局</td><td>.vs</td><td>两方案对比</td></tr>
+<tr><td>流程图</td><td>.flow / .flow-node</td><td>步骤、管道</td></tr>
+<tr><td>紧凑模式</td><td>.slide-inner.compact</td><td>>5 个卡片或复杂组合</td></tr>
+</tbody>
+</table>
+<ul class="bullet">
+<li><strong>索引公式：</strong>go(N) 跳转到 slides[N]，即 id="s(N+1)" 的 slide</li>
+<li><strong>navMenu</strong> 从 navGo(1) 开始（对应 s2，跳过封面）</li>
+<li><strong>页码</strong>硬编码为 <code>1 / N</code>，由 JS 初始化后自动更新</li>
+</ul>
+</div>
+</div>
+
+<!-- ==================== SLIDE 5: 结尾 ==================== -->
+<div class="slide cover-slide" id="s5">
+<div class="slide-inner">
+<h1 style="font-size:2.8em;">开始创作</h1>
+<p class="subtitle" style="margin-top:12px;">将本模板复制后替换内容即可</p>
+<div class="meta" style="margin-top:40px;font-size:.9em;line-height:2.2;color:#94a3b8;">
+<div>使用 <strong style="color:var(--blue);">slide-generator</strong> 技能自动生成完整演示文稿</div>
+<div style="margin-top:8px;">输入「帮我做一个 XXX 的 slides」即可触发</div>
+</div>
+</div>
+</div>
+
+<!--
+  INDEX REFERENCE:
+  navGo(N) 和 go(N) 均跳转到 slides[N]，即 HTML 中 id="s(N+1)" 的 slide
+  s1（封面）= index 0，navMenu 不引用
+  s2（第一章）= index 1 → navGo(1) / go(1)
+  s3 = index 2 → navGo(2) / go(2)
+  s4 = index 3 → navGo(3) / go(3)
+  s5（结尾）= index 4
+  公式：go(N) 的 N = 目标 slide 的 id 数字 - 1
+-->
+
+<!-- Navigation Menu -->
+<div id="navMenu">
+<div class="nav-item" onclick="navGo(1)">一、文字组件</div>
+<div class="nav-divider"></div>
+<div class="nav-item" onclick="navGo(2)">二、布局组件</div>
+<div class="nav-divider"></div>
+<div class="nav-item" onclick="navGo(3)">三、表格与列表</div>
+</div>
+
+<!-- Navigation Bar -->
+<div class="nav-bar">
+<button class="nav-btn" id="prevBtn" onclick="go(current-1)" aria-label="上一页" disabled>◀</button>
+<div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+<span class="page-num" id="pageNum" title="点击导航菜单" style="cursor:pointer;" onclick="toggleNav(event)">1 / 5</span>
+<button class="nav-btn" id="nextBtn" onclick="go(current+1)" aria-label="下一页">▶</button>
+</div>
+
+<script>
+const slides=document.querySelectorAll('.slide');
+const total=slides.length;
+let current=0;
+
+const navMenu=document.getElementById('navMenu');
+
+function go(n){
+  if(n<0||n>=total)return;
+  navMenu.classList.remove('show');
+  slides[current].classList.remove('active');
+  current=n;
+  slides[current].classList.add('active');
+  document.getElementById('progressFill').style.width=((current/(total-1))*100)+'%';
+  document.getElementById('pageNum').textContent=(current+1)+' / '+total;
+  document.getElementById('prevBtn').disabled=(current===0);
+  document.getElementById('nextBtn').disabled=(current===total-1);
+  triggerAnimations(slides[current]);
+}
+
+function toggleNav(e){
+  e.stopPropagation();
+  navMenu.classList.toggle('show');
+}
+
+function navGo(n){
+  go(n);
+}
+
+document.addEventListener('click',function(e){
+  if(!navMenu.contains(e.target)&&e.target.id!=='pageNum'){
+    navMenu.classList.remove('show');
+  }
+});
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();go(current+1);}
+  if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(current-1);}
+  if(e.key==='Home'){e.preventDefault();go(0);}
+  if(e.key==='End'){e.preventDefault();go(total-1);}
+});
+
+/* Touch swipe support */
+let tx=0;
+document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;});
+document.addEventListener('touchend',e=>{
+  const dx=e.changedTouches[0].clientX-tx;
+  if(Math.abs(dx)>50){dx<0?go(current+1):go(current-1);}
+});
+
+function triggerAnimations(slide){
+  const animNodes=slide.querySelectorAll('.node,.arrow-line,.chat-b,.chat-t,.plan-item,.exec-item');
+  animNodes.forEach(el=>{
+    el.style.animation='none';
+    el.offsetHeight;
+    el.style.animation='';
+  });
+}
+
+/* Init */
+go(0);
+</script>
+</body>
+</html>
