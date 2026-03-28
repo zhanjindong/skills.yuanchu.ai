@@ -83,21 +83,6 @@
     return div.innerHTML;
   }
 
-  // ---- Install command generator ----
-  function getInstallCommand(skillId, framework) {
-    var base = 'https://skills.yuanchu.ai/skills/' + skillId + '/';
-    switch (framework) {
-      case 'claude-code':
-        return 'curl -sL ' + base + 'claude-code.md -o .claude/commands/' + skillId + '.md';
-      case 'codex':
-        return 'curl -sL ' + base + 'codex.md -o AGENTS.md';
-      case 'openclaw':
-        return 'curl -sL ' + base + 'openclaw.json -o openclaw-' + skillId + '.json';
-      default:
-        return '';
-    }
-  }
-
   // ---- Sanitize HTML (strip script/event handlers from Markdown output) ----
   function sanitizeHtml(html) {
     var doc = new DOMParser().parseFromString(html, 'text/html');
@@ -289,12 +274,11 @@
     // Downloads (sidebar)
     var downloadsEl = document.getElementById('skill-downloads');
     downloadsEl.innerHTML =
-      '<p class="section-title">安装与下载</p>'
+      '<p class="section-title">DOWNLOAD</p>'
       + skill.formats.map(function (f) {
         var rawName = f.file.split('/').pop();
         var ext = rawName.indexOf('.') !== -1 ? rawName.substring(rawName.indexOf('.')) : '';
         var fileName = skill.id + '-' + f.framework + ext;
-        var cmd = getInstallCommand(skill.id, f.framework);
         return '<div class="download-item">'
           + '<div class="download-item-inner">'
           + '<div class="download-info">'
@@ -303,15 +287,6 @@
           + '</div>'
           + '<button class="download-btn" data-file="' + esc(f.file) + '" data-name="' + esc(fileName) + '">Download</button>'
           + '</div>'
-          + (cmd
-            ? '<div class="install-command-block">'
-            + '<div class="install-command-bar">'
-            + '<div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>'
-            + '<span class="install-command-bar-title">bash</span>'
-            + '</div>'
-            + '<pre class="install-command-code"><code>' + esc(cmd) + '</code></pre>'
-            + '</div>'
-            : '')
           + '</div>';
       }).join('');
 

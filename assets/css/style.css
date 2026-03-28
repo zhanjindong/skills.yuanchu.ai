@@ -798,61 +798,6 @@ button { cursor: pointer; }
   box-shadow: var(--shadow-md);
 }
 
-/* --- Install Command Block (Terminal Style) --- */
-.install-command-block {
-  background: #1a1a2e;
-  border-radius: 0 0 var(--radius) var(--radius);
-  overflow: hidden;
-}
-
-.install-command-bar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  background: #16162a;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.install-command-bar-title {
-  font-size: 11px;
-  color: #666;
-  font-family: var(--font-mono);
-}
-
-.install-command-bar .window-dots .dot {
-  width: 8px;
-  height: 8px;
-}
-
-.install-command-code {
-  margin: 0;
-  padding: 12px 16px;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  background: transparent;
-  border-radius: 0;
-}
-
-.install-command-code code {
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-  color: #e0e0e0;
-  line-height: 1.6;
-  white-space: pre;
-  background: none;
-  padding: 0;
-}
-
-/* Sidebar overrides for install command block */
-.detail-sidebar .install-command-block {
-  border-radius: 0;
-}
-
-.detail-sidebar .download-item:last-child .install-command-block {
-  border-radius: 0 0 var(--radius) var(--radius);
-}
-
 /* --- Links Section --- */
 .links-section {
   margin-bottom: 48px;
@@ -1140,9 +1085,6 @@ footer a:hover {
     -webkit-line-clamp: 4;
   }
 
-  .install-command-code code {
-    font-size: 11.5px;
-  }
 }
 
 /* Small mobile */
