@@ -12,6 +12,21 @@
   var frameworks = [];
   var activeCategory = 'all';
   var searchQuery = '';
+  var favorites = JSON.parse(localStorage.getItem('skill-favorites') || '[]');
+
+  function isFavorited(skillId) {
+    return favorites.indexOf(skillId) !== -1;
+  }
+
+  function toggleFavorite(skillId) {
+    var idx = favorites.indexOf(skillId);
+    if (idx === -1) {
+      favorites.push(skillId);
+    } else {
+      favorites.splice(idx, 1);
+    }
+    localStorage.setItem('skill-favorites', JSON.stringify(favorites));
+  }
 
   // ---- Data Loading ----
   async function loadData() {
@@ -45,8 +60,12 @@
   function filterSkills() {
     var q = searchQuery.toLowerCase().trim();
     return allSkills.filter(function (skill) {
-      var matchCategory = activeCategory === 'all' || skill.category === activeCategory;
-      if (!matchCategory) return false;
+      if (activeCategory === 'favorites') {
+        if (!isFavorited(skill.id)) return false;
+      } else {
+        var matchCategory = activeCategory === 'all' || skill.category === activeCategory;
+        if (!matchCategory) return false;
+      }
       if (!q) return true;
       return (
         skill.id.toLowerCase().indexOf(q) !== -1 ||
@@ -92,6 +111,7 @@
     if (!container) return;
 
     var html = '<button class="category-tag active" data-id="all">全部</button>';
+    html += '<button class="category-tag" data-id="favorites">♡ 收藏</button>';
     categories.forEach(function (cat) {
       html += '<button class="category-tag" data-id="' + esc(cat.id) + '">'
         + cat.icon + ' ' + esc(cat.name) + '</button>';
@@ -147,7 +167,9 @@
         + '<div class="card-summary">' + esc(skill.summary) + '</div>'
         + '<div class="card-footer">'
         + '<span class="card-date">' + esc(skill.updatedAt) + '</span>'
-        + '<span class="card-favorite">♡</span>'
+        + '<span class="card-favorite' + (isFavorited(skill.id) ? ' favorited' : '') + '" data-skill-id="' + esc(skill.id) + '">'
+        + (isFavorited(skill.id) ? '♥' : '♡')
+        + '</span>'
         + '</div>'
         + '</div>'
         + '</div>';
@@ -159,8 +181,14 @@
     var container = document.getElementById('skills-grid');
     if (!container) return;
     container.addEventListener('click', function (e) {
-      // Ignore favorite button clicks
-      if (e.target.classList.contains('card-favorite')) return;
+      if (e.target.classList.contains('card-favorite')) {
+        var skillId = e.target.dataset.skillId;
+        toggleFavorite(skillId);
+        e.target.classList.toggle('favorited');
+        e.target.textContent = isFavorited(skillId) ? '♥' : '♡';
+        if (activeCategory === 'favorites') renderSkillsGrid();
+        return;
+      }
       var card = e.target.closest('.skill-card');
       if (!card) return;
       window.location.href = 'skill.html?id=' + encodeURIComponent(card.dataset.id);
@@ -322,14 +350,22 @@
           + '<div class="card-summary">' + esc(s.summary) + '</div>'
           + '<div class="card-footer">'
           + '<span class="card-date">' + esc(s.updatedAt) + '</span>'
-          + '<span class="card-favorite">♡</span>'
+          + '<span class="card-favorite' + (isFavorited(s.id) ? ' favorited' : '') + '" data-skill-id="' + esc(s.id) + '">'
+          + (isFavorited(s.id) ? '♥' : '♡')
+          + '</span>'
           + '</div>'
           + '</div>'
           + '</div>';
       }).join('');
 
       document.getElementById('related-grid').addEventListener('click', function (e) {
-        if (e.target.classList.contains('card-favorite')) return;
+        if (e.target.classList.contains('card-favorite')) {
+          var skillId = e.target.dataset.skillId;
+          toggleFavorite(skillId);
+          e.target.classList.toggle('favorited');
+          e.target.textContent = isFavorited(skillId) ? '♥' : '♡';
+          return;
+        }
         var card = e.target.closest('.skill-card');
         if (!card) return;
         window.location.href = 'skill.html?id=' + encodeURIComponent(card.dataset.id);

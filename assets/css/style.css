@@ -404,6 +404,10 @@ button { cursor: pointer; }
   color: var(--primary);
 }
 
+.card-favorite.favorited {
+  color: var(--primary);
+}
+
 .card-frameworks {
   display: flex;
   flex-wrap: wrap;
