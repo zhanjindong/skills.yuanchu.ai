@@ -1,0 +1,36 @@
+{
+  "name": "Weekly Report",
+  "version": "1.0.0",
+  "description": "Generate structured weekly reports from git logs or work records",
+  "author": "Yuna Cheng",
+  "category": "productivity",
+  "tags": ["weekly-report", "productivity", "git", "summary"],
+  "inputs": [
+    {
+      "name": "work_items",
+      "type": "string",
+      "description": "Work items or git log content for the week",
+      "required": true
+    },
+    {
+      "name": "style",
+      "type": "string",
+      "description": "Report style: brief, detailed, executive",
+      "default": "brief"
+    },
+    {
+      "name": "language",
+      "type": "string",
+      "description": "Output language (zh/en)",
+      "default": "zh"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "report",
+      "type": "string",
+      "description": "Structured weekly report in Markdown format"
+    }
+  ],
+  "prompt": "You are a weekly report generator. Create a structured weekly report from the provided work items.\n\nOrganize into:\n1. Completed — outcome-oriented descriptions grouped by project\n2. In Progress — current status and progress\n3. Next Week Plan — specific, measurable tasks\n4. Risks & Issues — blockers with suggested solutions\n\nRules:\n- Focus on results, not activities\n- Be specific and measurable\n- Include solutions for risks\n\nStyle: {{style}}\nLanguage: {{language}}\n\nWork items:\n{{work_items}}"
+}

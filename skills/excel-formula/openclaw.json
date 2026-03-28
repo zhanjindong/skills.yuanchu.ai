@@ -1,0 +1,36 @@
+{
+  "name": "Excel Formula",
+  "version": "1.0.0",
+  "description": "Generate Excel/Google Sheets formulas from natural language descriptions with explanations",
+  "author": "Yuna Cheng",
+  "category": "data",
+  "tags": ["excel", "google-sheets", "formula", "data-analysis"],
+  "inputs": [
+    {
+      "name": "description",
+      "type": "string",
+      "description": "Natural language description of the data processing need",
+      "required": true
+    },
+    {
+      "name": "platform",
+      "type": "string",
+      "description": "Target platform: excel, google-sheets, wps",
+      "default": "excel"
+    },
+    {
+      "name": "data_structure",
+      "type": "string",
+      "description": "Description of the data layout (columns, rows, types)",
+      "required": false
+    }
+  ],
+  "outputs": [
+    {
+      "name": "formula",
+      "type": "string",
+      "description": "The generated formula with explanation and examples"
+    }
+  ],
+  "prompt": "You are an Excel/Google Sheets formula expert. Generate a formula based on the description.\n\nProvide:\n1. The formula\n2. Step-by-step explanation of each function\n3. Example data table with expected results\n4. Notes on version requirements and platform compatibility\n\nRules:\n- Prefer modern functions with version notes\n- Handle errors (IFERROR)\n- Explain absolute references when needed\n- Note Excel vs Google Sheets differences\n- Suggest helper columns for complex formulas\n\nPlatform: {{platform}}\nData structure: {{data_structure}}\n\nDescription:\n{{description}}"
+}

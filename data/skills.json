@@ -332,5 +332,349 @@
     "featured": false,
     "createdAt": "2026-03-13",
     "updatedAt": "2026-03-28"
+  },
+  {
+    "id": "meeting-summary",
+    "name": "会议纪要生成",
+    "icon": "📝",
+    "summary": "从会议记录提取关键决策、行动项、负责人和截止日期",
+    "description": "skills/meeting-summary/README.md",
+    "category": "productivity",
+    "tags": ["meeting", "summary", "productivity", "action-items"],
+    "author": {
+      "name": "Yuna Cheng",
+      "link": "https://yuanchu.ai"
+    },
+    "formats": [
+      {
+        "framework": "claude-code",
+        "label": "Claude Code",
+        "file": "skills/meeting-summary/claude-code.md",
+        "description": "CLAUDE.md 斜杠命令格式"
+      },
+      {
+        "framework": "codex",
+        "label": "Codex",
+        "file": "skills/meeting-summary/codex.md",
+        "description": "Codex 智能体提示词格式"
+      },
+      {
+        "framework": "openclaw",
+        "label": "OpenClaw",
+        "file": "skills/meeting-summary/openclaw.json",
+        "description": "OpenClaw 插件格式"
+      }
+    ],
+    "examples": [
+      {
+        "input": "一段 30 分钟的产品评审会议录音转写文本",
+        "output": "生成包含 3 项关键决策、5 个行动项（含负责人和截止日期）、2 个待确认事项的结构化会议纪要"
+      }
+    ],
+    "links": {},
+    "featured": true,
+    "createdAt": "2026-03-28",
+    "updatedAt": "2026-03-28"
+  },
+  {
+    "id": "email-writer",
+    "name": "邮件写作助手",
+    "icon": "✉️",
+    "summary": "根据场景生成专业邮件，支持商务、求职、客户沟通等模板",
+    "description": "skills/email-writer/README.md",
+    "category": "productivity",
+    "tags": ["email", "writing", "business", "communication"],
+    "author": {
+      "name": "Yuna Cheng",
+      "link": "https://yuanchu.ai"
+    },
+    "formats": [
+      {
+        "framework": "claude-code",
+        "label": "Claude Code",
+        "file": "skills/email-writer/claude-code.md",
+        "description": "CLAUDE.md 斜杠命令格式"
+      },
+      {
+        "framework": "codex",
+        "label": "Codex",
+        "file": "skills/email-writer/codex.md",
+        "description": "Codex 智能体提示词格式"
+      },
+      {
+        "framework": "openclaw",
+        "label": "OpenClaw",
+        "file": "skills/email-writer/openclaw.json",
+        "description": "OpenClaw 插件格式"
+      }
+    ],
+    "examples": [
+      {
+        "input": "给客户写一封项目延期说明邮件，语气专业但诚恳",
+        "output": "生成包含延期原因、影响评估、补救措施和新时间表的专业邮件"
+      }
+    ],
+    "links": {},
+    "featured": true,
+    "createdAt": "2026-03-28",
+    "updatedAt": "2026-03-28"
+  },
+  {
+    "id": "translator",
+    "name": "翻译与本地化",
+    "icon": "🌐",
+    "summary": "高质量翻译，保留语境和文化适配，支持术语表和品牌风格",
+    "description": "skills/translator/README.md",
+    "category": "writing",
+    "tags": ["translation", "localization", "i18n", "multilingual"],
+    "author": {
+      "name": "Yuna Cheng",
+      "link": "https://yuanchu.ai"
+    },
+    "formats": [
+      {
+        "framework": "claude-code",
+        "label": "Claude Code",
+        "file": "skills/translator/claude-code.md",
+        "description": "CLAUDE.md 斜杠命令格式"
+      },
+      {
+        "framework": "codex",
+        "label": "Codex",
+        "file": "skills/translator/codex.md",
+        "description": "Codex 智能体提示词格式"
+      },
+      {
+        "framework": "openclaw",
+        "label": "OpenClaw",
+        "file": "skills/translator/openclaw.json",
+        "description": "OpenClaw 插件格式"
+      }
+    ],
+    "examples": [
+      {
+        "input": "将一段技术文档从英文翻译为中文，保留代码块不翻译",
+        "output": "生成保留原文格式的中文翻译，附带术语对照表和文化适配说明"
+      }
+    ],
+    "links": {},
+    "featured": true,
+    "createdAt": "2026-03-28",
+    "updatedAt": "2026-03-28"
+  },
+  {
+    "id": "regex-generator",
+    "name": "正则表达式生成",
+    "icon": "🔣",
+    "summary": "根据自然语言描述生成正则表达式，附带测试用例和解释",
+    "description": "skills/regex-generator/README.md",
+    "category": "coding",
+    "tags": ["regex", "pattern-matching", "validation", "coding"],
+    "author": {
+      "name": "Yuna Cheng",
+      "link": "https://yuanchu.ai"
+    },
+    "formats": [
+      {
+        "framework": "claude-code",
+        "label": "Claude Code",
+        "file": "skills/regex-generator/claude-code.md",
+        "description": "CLAUDE.md 斜杠命令格式"
+      },
+      {
+        "framework": "codex",
+        "label": "Codex",
+        "file": "skills/regex-generator/codex.md",
+        "description": "Codex 智能体提示词格式"
+      },
+      {
+        "framework": "openclaw",
+        "label": "OpenClaw",
+        "file": "skills/regex-generator/openclaw.json",
+        "description": "OpenClaw 插件格式"
+      }
+    ],
+    "examples": [
+      {
+        "input": "匹配中国大陆手机号，以 1 开头的 11 位数字",
+        "output": "正则: `/^1[3-9]\\d{9}$/`，附带 13800138000（匹配）、12345678901（不匹配，第二位不合法）等测试用例"
+      }
+    ],
+    "links": {},
+    "featured": false,
+    "createdAt": "2026-03-28",
+    "updatedAt": "2026-03-28"
+  },
+  {
+    "id": "weekly-report",
+    "name": "周报生成",
+    "icon": "📅",
+    "summary": "从工作记录/Git 日志自动生成结构化周报，支持多种风格",
+    "description": "skills/weekly-report/README.md",
+    "category": "productivity",
+    "tags": ["weekly-report", "productivity", "git", "summary"],
+    "author": {
+      "name": "Yuna Cheng",
+      "link": "https://yuanchu.ai"
+    },
+    "formats": [
+      {
+        "framework": "claude-code",
+        "label": "Claude Code",
+        "file": "skills/weekly-report/claude-code.md",
+        "description": "CLAUDE.md 斜杠命令格式"
+      },
+      {
+        "framework": "codex",
+        "label": "Codex",
+        "file": "skills/weekly-report/codex.md",
+        "description": "Codex 智能体提示词格式"
+      },
+      {
+        "framework": "openclaw",
+        "label": "OpenClaw",
+        "file": "skills/weekly-report/openclaw.json",
+        "description": "OpenClaw 插件格式"
+      }
+    ],
+    "examples": [
+      {
+        "input": "根据本周 Git 提交记录生成技术周报",
+        "output": "生成按项目分组的结构化周报，包含本周完成 8 项开发任务、2 项进行中、下周 5 项计划"
+      }
+    ],
+    "links": {},
+    "featured": false,
+    "createdAt": "2026-03-28",
+    "updatedAt": "2026-03-28"
+  },
+  {
+    "id": "resume-optimizer",
+    "name": "简历优化",
+    "icon": "💼",
+    "summary": "分析简历内容，优化措辞、突出亮点、匹配目标岗位要求",
+    "description": "skills/resume-optimizer/README.md",
+    "category": "productivity",
+    "tags": ["resume", "career", "job-search", "optimization"],
+    "author": {
+      "name": "Yuna Cheng",
+      "link": "https://yuanchu.ai"
+    },
+    "formats": [
+      {
+        "framework": "claude-code",
+        "label": "Claude Code",
+        "file": "skills/resume-optimizer/claude-code.md",
+        "description": "CLAUDE.md 斜杠命令格式"
+      },
+      {
+        "framework": "codex",
+        "label": "Codex",
+        "file": "skills/resume-optimizer/codex.md",
+        "description": "Codex 智能体提示词格式"
+      },
+      {
+        "framework": "openclaw",
+        "label": "OpenClaw",
+        "file": "skills/resume-optimizer/openclaw.json",
+        "description": "OpenClaw 插件格式"
+      }
+    ],
+    "examples": [
+      {
+        "input": "优化一份 Java 后端工程师简历，目标岗位是高级开发工程师",
+        "output": "逐条优化工作经历描述，将「负责用户模块开发」改为「主导用户系统重构，QPS 提升 3 倍，响应时间降低 60%」"
+      }
+    ],
+    "links": {},
+    "featured": false,
+    "createdAt": "2026-03-28",
+    "updatedAt": "2026-03-28"
+  },
+  {
+    "id": "xiaohongshu-writer",
+    "name": "小红书文案",
+    "icon": "📕",
+    "summary": "生成小红书风格种草文案，含标题、正文、标签和 emoji 排版",
+    "description": "skills/xiaohongshu-writer/README.md",
+    "category": "writing",
+    "tags": ["xiaohongshu", "copywriting", "social-media", "marketing"],
+    "author": {
+      "name": "Yuna Cheng",
+      "link": "https://yuanchu.ai"
+    },
+    "formats": [
+      {
+        "framework": "claude-code",
+        "label": "Claude Code",
+        "file": "skills/xiaohongshu-writer/claude-code.md",
+        "description": "CLAUDE.md 斜杠命令格式"
+      },
+      {
+        "framework": "codex",
+        "label": "Codex",
+        "file": "skills/xiaohongshu-writer/codex.md",
+        "description": "Codex 智能体提示词格式"
+      },
+      {
+        "framework": "openclaw",
+        "label": "OpenClaw",
+        "file": "skills/xiaohongshu-writer/openclaw.json",
+        "description": "OpenClaw 插件格式"
+      }
+    ],
+    "examples": [
+      {
+        "input": "写一篇推荐机械键盘的小红书笔记，面向程序员群体",
+        "output": "生成 3 个吸睛标题 + 500 字种草正文（含 emoji 排版）+ 8 个话题标签"
+      }
+    ],
+    "links": {},
+    "featured": false,
+    "createdAt": "2026-03-28",
+    "updatedAt": "2026-03-28"
+  },
+  {
+    "id": "excel-formula",
+    "name": "Excel 公式助手",
+    "icon": "📊",
+    "summary": "根据需求生成 Excel/Google Sheets 公式，支持 VLOOKUP、数据透视等",
+    "description": "skills/excel-formula/README.md",
+    "category": "data",
+    "tags": ["excel", "google-sheets", "formula", "data-analysis"],
+    "author": {
+      "name": "Yuna Cheng",
+      "link": "https://yuanchu.ai"
+    },
+    "formats": [
+      {
+        "framework": "claude-code",
+        "label": "Claude Code",
+        "file": "skills/excel-formula/claude-code.md",
+        "description": "CLAUDE.md 斜杠命令格式"
+      },
+      {
+        "framework": "codex",
+        "label": "Codex",
+        "file": "skills/excel-formula/codex.md",
+        "description": "Codex 智能体提示词格式"
+      },
+      {
+        "framework": "openclaw",
+        "label": "OpenClaw",
+        "file": "skills/excel-formula/openclaw.json",
+        "description": "OpenClaw 插件格式"
+      }
+    ],
+    "examples": [
+      {
+        "input": "在 A 列中查找姓名，返回 B 列对应的工资，找不到显示「无数据」",
+        "output": "`=IFERROR(VLOOKUP(D1,A:B,2,FALSE),\"无数据\")`，附带 XLOOKUP 替代方案和示例数据表"
+      }
+    ],
+    "links": {},
+    "featured": false,
+    "createdAt": "2026-03-28",
+    "updatedAt": "2026-03-28"
   }
 ]

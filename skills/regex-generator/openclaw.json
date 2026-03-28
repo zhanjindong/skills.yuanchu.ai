@@ -1,0 +1,46 @@
+{
+  "name": "Regex Generator",
+  "version": "1.0.0",
+  "description": "Generate regex patterns from natural language descriptions with explanations and test cases",
+  "author": "Yuna Cheng",
+  "category": "coding",
+  "tags": ["regex", "pattern-matching", "validation", "coding"],
+  "inputs": [
+    {
+      "name": "description",
+      "type": "string",
+      "description": "Natural language description of the pattern to match",
+      "required": true
+    },
+    {
+      "name": "language",
+      "type": "string",
+      "description": "Target programming language: javascript, python, java, go, generic",
+      "default": "generic"
+    },
+    {
+      "name": "use_case",
+      "type": "string",
+      "description": "Use case: validation, extraction, replacement",
+      "default": "validation"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "regex",
+      "type": "string",
+      "description": "The generated regex pattern with flags"
+    },
+    {
+      "name": "explanation",
+      "type": "string",
+      "description": "Part-by-part explanation of the regex"
+    },
+    {
+      "name": "test_cases",
+      "type": "string",
+      "description": "Matching and non-matching test cases"
+    }
+  ],
+  "prompt": "You are a regex expert. Generate a regular expression based on the following description.\n\nProvide:\n1. The regex pattern with appropriate flags\n2. Part-by-part explanation\n3. At least 3 matching and 3 non-matching test cases with reasons\n\nRules:\n- Prefer readable patterns\n- State limitations clearly\n- Cover edge cases in test examples\n- Note language-specific syntax differences\n\nTarget language: {{language}}\nUse case: {{use_case}}\n\nDescription:\n{{description}}"
+}
