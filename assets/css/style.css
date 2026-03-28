@@ -798,39 +798,6 @@ button { cursor: pointer; }
   box-shadow: var(--shadow-md);
 }
 
-/* --- Download Actions Container --- */
-.download-actions {
-  display: flex;
-  gap: 8px;
-  flex-shrink: 0;
-}
-
-/* --- Copy Install Button --- */
-.copy-install-btn {
-  font-size: 13px;
-  padding: 8px 20px;
-  color: var(--primary);
-  border: 1px solid var(--primary);
-  border-radius: 6px;
-  transition: all var(--transition);
-  display: inline-block;
-  text-align: center;
-  flex-shrink: 0;
-  font-weight: 500;
-  background: transparent;
-  cursor: pointer;
-}
-
-.copy-install-btn:hover {
-  background: color-mix(in srgb, var(--primary) 8%, transparent);
-}
-
-.copy-install-btn.copied {
-  color: var(--green);
-  border-color: var(--green);
-  background: color-mix(in srgb, var(--green) 8%, transparent);
-}
-
 /* --- Install Command Block (Terminal Style) --- */
 .install-command-block {
   background: #1a1a2e;
@@ -884,15 +851,6 @@ button { cursor: pointer; }
 
 .detail-sidebar .download-item:last-child .install-command-block {
   border-radius: 0 0 var(--radius) var(--radius);
-}
-
-.detail-sidebar .download-actions {
-  gap: 6px;
-}
-
-.detail-sidebar .copy-install-btn {
-  padding: 6px 10px;
-  font-size: 12px;
 }
 
 /* --- Links Section --- */
@@ -1180,16 +1138,6 @@ footer a:hover {
 
   .card-summary {
     -webkit-line-clamp: 4;
-  }
-
-  .download-actions {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .detail-sidebar .download-item-inner {
-    flex-direction: column;
-    align-items: stretch;
   }
 
   .install-command-code code {

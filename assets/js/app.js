@@ -98,37 +98,6 @@
     }
   }
 
-  // ---- Copy to clipboard with button feedback ----
-  function copyToClipboard(text, btnEl) {
-    function onSuccess() {
-      btnEl.textContent = '已复制!';
-      btnEl.classList.add('copied');
-      setTimeout(function () {
-        btnEl.textContent = '复制命令';
-        btnEl.classList.remove('copied');
-      }, 2000);
-    }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(onSuccess).catch(function () {
-        fallbackCopy(text, onSuccess);
-      });
-    } else {
-      fallbackCopy(text, onSuccess);
-    }
-  }
-
-  function fallbackCopy(text, cb) {
-    var ta = document.createElement('textarea');
-    ta.value = text;
-    ta.style.position = 'fixed';
-    ta.style.opacity = '0';
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    document.body.removeChild(ta);
-    cb();
-  }
-
   // ---- Sanitize HTML (strip script/event handlers from Markdown output) ----
   function sanitizeHtml(html) {
     var doc = new DOMParser().parseFromString(html, 'text/html');
@@ -322,7 +291,9 @@
     downloadsEl.innerHTML =
       '<p class="section-title">安装与下载</p>'
       + skill.formats.map(function (f) {
-        var fileName = f.file.split('/').pop();
+        var rawName = f.file.split('/').pop();
+        var ext = rawName.indexOf('.') !== -1 ? rawName.substring(rawName.indexOf('.')) : '';
+        var fileName = skill.id + '-' + f.framework + ext;
         var cmd = getInstallCommand(skill.id, f.framework);
         return '<div class="download-item">'
           + '<div class="download-item-inner">'
@@ -330,10 +301,7 @@
           + '<div class="download-framework">' + esc(f.label) + '</div>'
           + '<div class="download-desc">' + esc(f.description) + '</div>'
           + '</div>'
-          + '<div class="download-actions">'
-          + (cmd ? '<button class="copy-install-btn" data-cmd="' + esc(cmd) + '">复制命令</button>' : '')
-          + '<button class="download-btn" data-file="' + esc(f.file) + '" data-name="' + esc(fileName) + '">下载文件</button>'
-          + '</div>'
+          + '<button class="download-btn" data-file="' + esc(f.file) + '" data-name="' + esc(fileName) + '">Download</button>'
           + '</div>'
           + (cmd
             ? '<div class="install-command-block">'
@@ -346,13 +314,6 @@
             : '')
           + '</div>';
       }).join('');
-
-    // Bind copy-install buttons
-    downloadsEl.querySelectorAll('.copy-install-btn').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        copyToClipboard(btn.dataset.cmd, btn);
-      });
-    });
 
     // Bind download buttons
     downloadsEl.querySelectorAll('.download-btn').forEach(function (btn) {
