@@ -1,0 +1,30 @@
+{
+  "name": "Smart Commit",
+  "version": "1.0.0",
+  "description": "Analyze git diff and generate Angular Commit Convention messages",
+  "author": "Jackie Zhan",
+  "category": "coding",
+  "tags": ["git", "commit", "automation"],
+  "inputs": [
+    {
+      "name": "diff",
+      "type": "string",
+      "description": "The output of git diff --cached or git diff",
+      "required": true
+    },
+    {
+      "name": "language",
+      "type": "string",
+      "description": "Language for the commit message (en/zh)",
+      "default": "en"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "message",
+      "type": "string",
+      "description": "The generated commit message in Angular Convention format"
+    }
+  ],
+  "prompt": "You are a commit message generator. Analyze the following git diff and generate a commit message following Angular Commit Convention format: type(scope): description.\n\nRules:\n- type: feat|fix|docs|style|refactor|test|chore|perf|ci|build\n- scope: business module name derived from file paths\n- description: lowercase start, no period, max 72 chars, focus on WHY not WHAT\n- If changes are unrelated, suggest splitting commits\n\nLanguage: {{language}}\n\nDiff:\n{{diff}}"
+}

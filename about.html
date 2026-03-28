@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于 - Skills Market - 元初AI</title>
+    <meta name="description" content="关于 Skills Market - AI Skills 集市，收集和展示各领域优质 AI Skills">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="top-nav-inner">
+            <a href="index.html" class="nav-brand">
+                <span class="terminal-prompt">~$</span> Skills Market
+            </a>
+            <div class="nav-links">
+                <a href="about.html">About</a>
+                <a href="https://yuanchu.ai" target="_blank">元初AI</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="content">
+
+        <!-- Back Navigation -->
+        <a href="index.html" class="back-nav">&larr; Back to Skills</a>
+
+        <!-- About Header -->
+        <div class="about-header">
+            <h1 class="page-title">About Skills Market</h1>
+            <p class="page-subtitle">AI Skills 集市，让你的 Agent 更强大</p>
+        </div>
+
+        <div class="about-content">
+
+            <!-- Platform Introduction -->
+            <div class="about-section">
+                <h2>PLATFORM</h2>
+                <div class="about-text">
+                    <p>Skills Market 是元初AI旗下的 AI 技能集市，致力于收集和展示各领域优质的 AI Skills。</p>
+                    <p>AI Agent 生态快速发展，Claude Code、Codex、OpenClaw 等 Agent 框架各有其技能与插件格式。开发者创造了大量有趣实用的 Skills，但缺少一个统一的展示和发现平台。</p>
+                    <p>Skills Market 汇聚这些优质技能，同一 Skill 支持多种 Agent 框架格式下载，让用户一站找到所需技能，让你的 Agent 更强大。</p>
+                </div>
+            </div>
+
+            <!-- Supported Agent Frameworks -->
+            <div class="about-section">
+                <h2>SUPPORTED FRAMEWORKS</h2>
+                <div class="framework-list">
+
+                    <div class="framework-item">
+                        <div class="framework-item-name">Claude Code</div>
+                        <div>
+                            <div class="framework-item-desc">Anthropic 的 CLI 编程助手，通过 slash command 和 CLAUDE.md 扩展能力。</div>
+                            <div class="framework-item-format">format: .md (slash command / CLAUDE.md skill)</div>
+                        </div>
+                    </div>
+
+                    <div class="framework-item">
+                        <div class="framework-item-name">Codex</div>
+                        <div>
+                            <div class="framework-item-desc">OpenAI 的编程 Agent，支持通过配置文件扩展技能。</div>
+                            <div class="framework-item-format">format: .md / .yaml</div>
+                        </div>
+                    </div>
+
+                    <div class="framework-item">
+                        <div class="framework-item-name">OpenClaw</div>
+                        <div>
+                            <div class="framework-item-desc">开源 Agent 框架，支持灵活的插件系统。</div>
+                            <div class="framework-item-format">format: .json / .yaml</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="about-text" style="margin-top: 20px;">
+                    <p>更多框架持续接入中，欢迎提交适配请求。</p>
+                </div>
+            </div>
+
+            <!-- How to Submit -->
+            <div class="about-section">
+                <h2>SUBMIT A SKILL</h2>
+                <div class="about-text">
+                    <p>我们欢迎社区贡献优质的 AI Skills。提交流程如下:</p>
+                </div>
+                <div class="submit-steps">
+                    <div class="submit-step">
+                        <div class="submit-step-text">在 skills/ 目录下创建以 Skill ID 命名的目录（使用 kebab-case 命名）</div>
+                    </div>
+                    <div class="submit-step">
+                        <div class="submit-step-text">编写 README.md（详细功能描述）和至少一个框架格式的 Skill 实现文件</div>
+                    </div>
+                    <div class="submit-step">
+                        <div class="submit-step-text">在 data/skills.json 中添加一条元数据记录，formats[].file 指向对应文件路径</div>
+                    </div>
+                    <div class="submit-step">
+                        <div class="submit-step-text">通过 GitHub Pull Request 提交，管理员审核后即可上线</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact -->
+            <div class="about-section">
+                <h2>CONTACT</h2>
+                <div class="contact-info">
+                    <div class="contact-item">GitHub: <a href="https://github.com/nicejackiezhang/skills.yuanchu.ai" target="_blank">skills.yuanchu.ai</a></div>
+                    <div class="contact-item">Email: <a href="mailto:hi@yuanchu.ai">hi@yuanchu.ai</a></div>
+                    <div class="contact-item">Website: <a href="https://yuanchu.ai" target="_blank">yuanchu.ai</a></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 <a href="https://yuanchu.ai" target="_blank">元初AI</a> &middot; ORIGIN OF INTELLIGENCE</p>
+    </footer>
+
+</body>
+</html>

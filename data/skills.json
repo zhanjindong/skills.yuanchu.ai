@@ -1,0 +1,207 @@
+[
+  {
+    "id": "smart-commit",
+    "name": "智能提交",
+    "icon": "🚀",
+    "summary": "根据代码变更自动生成规范的 commit message",
+    "description": "skills/smart-commit/README.md",
+    "category": "coding",
+    "tags": ["git", "commit", "automation"],
+    "author": {
+      "name": "Jackie Zhan",
+      "link": "https://yuanchu.ai"
+    },
+    "formats": [
+      {
+        "framework": "claude-code",
+        "label": "Claude Code",
+        "file": "skills/smart-commit/claude-code.md",
+        "description": "CLAUDE.md 斜杠命令格式"
+      },
+      {
+        "framework": "codex",
+        "label": "Codex",
+        "file": "skills/smart-commit/codex.md",
+        "description": "Codex 智能体提示词格式"
+      },
+      {
+        "framework": "openclaw",
+        "label": "OpenClaw",
+        "file": "skills/smart-commit/openclaw.json",
+        "description": "OpenClaw 插件格式"
+      }
+    ],
+    "examples": [
+      {
+        "input": "git diff 显示修改了 auth 模块的 token 刷新逻辑",
+        "output": "feat(auth): add JWT token refresh mechanism"
+      },
+      {
+        "input": "git diff 显示修复了用户列表分页 bug",
+        "output": "fix(user): correct pagination offset calculation in user list"
+      }
+    ],
+    "links": {
+      "github": "https://github.com/anthropics/claude-code"
+    },
+    "featured": true,
+    "createdAt": "2026-03-20",
+    "updatedAt": "2026-03-28"
+  },
+  {
+    "id": "code-reviewer",
+    "name": "代码审查",
+    "icon": "🔍",
+    "summary": "自动审查代码，发现潜在问题和改进建议",
+    "description": "skills/code-reviewer/README.md",
+    "category": "coding",
+    "tags": ["code-review", "quality", "best-practices"],
+    "author": {
+      "name": "Jackie Zhan",
+      "link": "https://yuanchu.ai"
+    },
+    "formats": [
+      {
+        "framework": "claude-code",
+        "label": "Claude Code",
+        "file": "skills/code-reviewer/claude-code.md",
+        "description": "CLAUDE.md 斜杠命令格式"
+      },
+      {
+        "framework": "codex",
+        "label": "Codex",
+        "file": "skills/code-reviewer/codex.md",
+        "description": "Codex 智能体提示词格式"
+      }
+    ],
+    "examples": [
+      {
+        "input": "提交一段包含未处理异常和硬编码密码的 Java 代码",
+        "output": "发现 2 个严重问题：1) 第 23 行存在硬编码密码，建议使用环境变量；2) 第 45 行 NullPointerException 未捕获，建议添加空值检查"
+      }
+    ],
+    "links": {},
+    "featured": false,
+    "createdAt": "2026-03-22",
+    "updatedAt": "2026-03-28"
+  },
+  {
+    "id": "explain-code",
+    "name": "代码解读",
+    "icon": "💡",
+    "summary": "用通俗语言解释复杂代码逻辑",
+    "description": "skills/explain-code/README.md",
+    "category": "learning",
+    "tags": ["explanation", "learning", "documentation"],
+    "author": {
+      "name": "Jackie Zhan",
+      "link": "https://yuanchu.ai"
+    },
+    "formats": [
+      {
+        "framework": "claude-code",
+        "label": "Claude Code",
+        "file": "skills/explain-code/claude-code.md",
+        "description": "CLAUDE.md 斜杠命令格式"
+      },
+      {
+        "framework": "codex",
+        "label": "Codex",
+        "file": "skills/explain-code/codex.md",
+        "description": "Codex 智能体提示词格式"
+      },
+      {
+        "framework": "openclaw",
+        "label": "OpenClaw",
+        "file": "skills/explain-code/openclaw.json",
+        "description": "OpenClaw 插件格式"
+      }
+    ],
+    "examples": [
+      {
+        "input": "解释这段使用 reduce 和递归的 JavaScript 函数",
+        "output": "这个函数的作用是将嵌套的数组结构「拍平」成一维数组。它通过 reduce 遍历每个元素，如果遇到数组就递归处理，否则直接放入结果。类似于把俄罗斯套娃一层层打开，把里面所有小娃娃排成一排。"
+      }
+    ],
+    "links": {},
+    "featured": true,
+    "createdAt": "2026-03-21",
+    "updatedAt": "2026-03-28"
+  },
+  {
+    "id": "api-doc-generator",
+    "name": "API 文档生成",
+    "icon": "📝",
+    "summary": "根据代码自动生成 API 文档",
+    "description": "skills/api-doc-generator/README.md",
+    "category": "writing",
+    "tags": ["api", "documentation", "openapi", "swagger"],
+    "author": {
+      "name": "Jackie Zhan",
+      "link": "https://yuanchu.ai"
+    },
+    "formats": [
+      {
+        "framework": "claude-code",
+        "label": "Claude Code",
+        "file": "skills/api-doc-generator/claude-code.md",
+        "description": "CLAUDE.md 斜杠命令格式"
+      },
+      {
+        "framework": "openclaw",
+        "label": "OpenClaw",
+        "file": "skills/api-doc-generator/openclaw.json",
+        "description": "OpenClaw 插件格式"
+      }
+    ],
+    "examples": [
+      {
+        "input": "一个 Spring Boot REST Controller 的用户管理接口代码",
+        "output": "生成包含请求方法、路径、参数说明、响应示例、错误码的完整 API 文档（Markdown 格式）"
+      }
+    ],
+    "links": {},
+    "featured": false,
+    "createdAt": "2026-03-23",
+    "updatedAt": "2026-03-28"
+  },
+  {
+    "id": "test-generator",
+    "name": "测试生成",
+    "icon": "🧪",
+    "summary": "根据源代码自动生成单元测试",
+    "description": "skills/test-generator/README.md",
+    "category": "coding",
+    "tags": ["testing", "unit-test", "automation", "tdd"],
+    "author": {
+      "name": "Jackie Zhan",
+      "link": "https://yuanchu.ai"
+    },
+    "formats": [
+      {
+        "framework": "claude-code",
+        "label": "Claude Code",
+        "file": "skills/test-generator/claude-code.md",
+        "description": "CLAUDE.md 斜杠命令格式"
+      },
+      {
+        "framework": "codex",
+        "label": "Codex",
+        "file": "skills/test-generator/codex.md",
+        "description": "Codex 智能体提示词格式"
+      }
+    ],
+    "examples": [
+      {
+        "input": "一个包含用户注册逻辑的 Service 类（参数校验、密码加密、数据库保存）",
+        "output": "生成覆盖正常注册、重复用户名、无效邮箱、密码强度不足等场景的单元测试"
+      }
+    ],
+    "links": {
+      "github": "https://github.com/anthropics/claude-code"
+    },
+    "featured": false,
+    "createdAt": "2026-03-24",
+    "updatedAt": "2026-03-28"
+  }
+]

@@ -1,0 +1,36 @@
+{
+  "name": "Explain Code",
+  "version": "1.0.0",
+  "description": "Explain complex code logic in plain language with analogies and structured breakdown",
+  "author": "Jackie Zhan",
+  "category": "learning",
+  "tags": ["explanation", "learning", "documentation"],
+  "inputs": [
+    {
+      "name": "code",
+      "type": "string",
+      "description": "The code snippet or file content to explain",
+      "required": true
+    },
+    {
+      "name": "language",
+      "type": "string",
+      "description": "Programming language of the code (auto-detected if not specified)",
+      "required": false
+    },
+    {
+      "name": "audience",
+      "type": "string",
+      "description": "Target audience level: beginner, intermediate, advanced",
+      "default": "intermediate"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "explanation",
+      "type": "string",
+      "description": "Structured explanation in Markdown format with summary, approach, analysis, and key concepts"
+    }
+  ],
+  "prompt": "You are a code explanation expert. Explain the following code in plain language.\n\nTarget audience: {{audience}} developers.\n\nStructure your response as:\n1. One-Line Summary - what the code does\n2. Overall Approach - use analogies to describe the design\n3. Section-by-Section Analysis - break into logical blocks, explain what/why/how\n4. Key Concepts - list programming concepts and patterns used\n\nRules:\n- Do NOT translate line-by-line, organize by logic blocks\n- Use everyday analogies for abstract concepts\n- For complex control flow, explain execution order\n- Mention anti-patterns or bugs constructively\n\nCode:\n```{{language}}\n{{code}}\n```"
+}

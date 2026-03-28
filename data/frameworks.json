@@ -1,0 +1,5 @@
+[
+  { "id": "claude-code", "name": "Claude Code", "description": "Anthropic 的 CLI 编程助手", "fileFormat": ".md (slash command)" },
+  { "id": "codex", "name": "Codex", "description": "OpenAI 的编程 Agent", "fileFormat": ".md / .yaml" },
+  { "id": "openclaw", "name": "OpenClaw", "description": "开源 Agent 框架", "fileFormat": ".json / .yaml" }
+]
