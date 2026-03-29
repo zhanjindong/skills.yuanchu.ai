@@ -197,7 +197,7 @@
   var INSTALL_PLATFORMS = [
     { id: 'claude-code', label: 'Claude Code', basePath: '.claude/skills' },
     { id: 'codex', label: 'Codex', basePath: '.agents/skills' },
-    { id: 'openclaw', label: 'OpenClaw', basePath: '.openclaw/skills' }
+    { id: 'openclaw', label: 'OpenClaw', dynamic: true }
   ];
 
   var INSTALL_OS = [
@@ -226,6 +226,9 @@
 
   function getInstallBasePath(platformId, osId, skillId) {
     var platform = INSTALL_PLATFORMS.find(function (p) { return p.id === platformId; });
+    if (platform && platform.dynamic) {
+      return osId === 'windows' ? '$SkillDir' : '$SKILL_DIR';
+    }
     var base = platform ? platform.basePath : '.claude/skills';
     if (osId === 'windows') {
       return '$env:USERPROFILE\\' + base.replace(/\//g, '\\') + '\\' + skillId;
@@ -235,24 +238,35 @@
 
   function generateInstallScript(platformId, osId, skill) {
     var baseUrl = window.location.origin + '/skills/' + skill.id + '/';
+    var platform = INSTALL_PLATFORMS.find(function (p) { return p.id === platformId; });
+    var isDynamic = platform && platform.dynamic;
     var basePath = getInstallBasePath(platformId, osId, skill.id);
     var subDirs = getUniqueDirs(skill.files, skill.id);
 
     if (osId === 'macos') {
       var cmds = [];
+      // Dynamic platforms: prepend variable assignment and quote paths for variable expansion
+      if (isDynamic) {
+        cmds.push('SKILL_DIR="$(npm root -g)/openclaw/skills/' + skill.id + '"');
+      }
+      var q = isDynamic ? '"' : '';
       // mkdir for base + subdirs
-      var mkdirPaths = [basePath];
-      subDirs.forEach(function (d) { mkdirPaths.push(basePath + '/' + d); });
+      var mkdirPaths = [q + basePath + q];
+      subDirs.forEach(function (d) { mkdirPaths.push(q + basePath + '/' + d + q); });
       cmds.push('mkdir -p ' + mkdirPaths.join(' '));
       // curl for each file
       skill.files.forEach(function (f) {
-        cmds.push('curl -sL ' + baseUrl + f + ' -o ' + basePath + '/' + f);
+        cmds.push('curl -sL ' + baseUrl + f + ' -o ' + q + basePath + '/' + f + q);
       });
       return cmds.join(' && \\\n');
     }
 
     // Windows PowerShell
     var lines = [];
+    // Dynamic platforms: prepend variable assignment
+    if (isDynamic) {
+      lines.push('$SkillDir = "$(npm root -g)\\openclaw\\skills\\' + skill.id + '"');
+    }
     var mkdirPaths = [basePath];
     subDirs.forEach(function (d) { mkdirPaths.push(basePath + '\\' + d.replace(/\//g, '\\')); });
     mkdirPaths.forEach(function (p) {
