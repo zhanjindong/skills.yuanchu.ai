@@ -460,22 +460,26 @@ button { cursor: pointer; }
 
 .skill-detail-header {
   margin-bottom: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
 }
 
 .skill-detail-icon {
   font-size: 48px;
-  margin-bottom: 16px;
+  line-height: 1;
 }
 
 .skill-detail-name {
   font-size: 30px;
   font-weight: 700;
-  margin-bottom: 12px;
   color: var(--foreground);
   letter-spacing: -0.025em;
 }
 
 .skill-detail-meta {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
