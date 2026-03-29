@@ -6,7 +6,11 @@
     "summary": "根据代码变更自动生成规范的 commit message",
     "description": "skills/smart-commit/README.md",
     "category": "coding",
-    "tags": ["git", "commit", "automation"],
+    "tags": [
+      "git",
+      "commit",
+      "automation"
+    ],
     "author": {
       "name": "Jackie Zhan",
       "link": "https://yuanchu.ai"
@@ -15,19 +19,19 @@
       {
         "framework": "claude-code",
         "label": "Claude Code",
-        "file": "skills/smart-commit/claude-code.md",
+        "file": "skills/smart-commit/SKILL.md",
         "description": "CLAUDE.md 斜杠命令格式"
       },
       {
         "framework": "codex",
         "label": "Codex",
-        "file": "skills/smart-commit/codex.md",
+        "file": "skills/smart-commit/SKILL.md",
         "description": "Codex 智能体提示词格式"
       },
       {
         "framework": "openclaw",
         "label": "OpenClaw",
-        "file": "skills/smart-commit/openclaw.json",
+        "file": "skills/smart-commit/SKILL.md",
         "description": "OpenClaw 插件格式"
       }
     ],
@@ -55,7 +59,11 @@
     "summary": "自动审查代码，发现潜在问题和改进建议",
     "description": "skills/code-reviewer/README.md",
     "category": "coding",
-    "tags": ["code-review", "quality", "best-practices"],
+    "tags": [
+      "code-review",
+      "quality",
+      "best-practices"
+    ],
     "author": {
       "name": "Jackie Zhan",
       "link": "https://yuanchu.ai"
@@ -64,13 +72,13 @@
       {
         "framework": "claude-code",
         "label": "Claude Code",
-        "file": "skills/code-reviewer/claude-code.md",
+        "file": "skills/code-reviewer/SKILL.md",
         "description": "CLAUDE.md 斜杠命令格式"
       },
       {
         "framework": "codex",
         "label": "Codex",
-        "file": "skills/code-reviewer/codex.md",
+        "file": "skills/code-reviewer/SKILL.md",
         "description": "Codex 智能体提示词格式"
       }
     ],
@@ -92,7 +100,11 @@
     "summary": "用通俗语言解释复杂代码逻辑",
     "description": "skills/explain-code/README.md",
     "category": "learning",
-    "tags": ["explanation", "learning", "documentation"],
+    "tags": [
+      "explanation",
+      "learning",
+      "documentation"
+    ],
     "author": {
       "name": "Jackie Zhan",
       "link": "https://yuanchu.ai"
@@ -101,19 +113,19 @@
       {
         "framework": "claude-code",
         "label": "Claude Code",
-        "file": "skills/explain-code/claude-code.md",
+        "file": "skills/explain-code/SKILL.md",
         "description": "CLAUDE.md 斜杠命令格式"
       },
       {
         "framework": "codex",
         "label": "Codex",
-        "file": "skills/explain-code/codex.md",
+        "file": "skills/explain-code/SKILL.md",
         "description": "Codex 智能体提示词格式"
       },
       {
         "framework": "openclaw",
         "label": "OpenClaw",
-        "file": "skills/explain-code/openclaw.json",
+        "file": "skills/explain-code/SKILL.md",
         "description": "OpenClaw 插件格式"
       }
     ],
@@ -135,7 +147,12 @@
     "summary": "根据代码自动生成 API 文档",
     "description": "skills/api-doc-generator/README.md",
     "category": "writing",
-    "tags": ["api", "documentation", "openapi", "swagger"],
+    "tags": [
+      "api",
+      "documentation",
+      "openapi",
+      "swagger"
+    ],
     "author": {
       "name": "Jackie Zhan",
       "link": "https://yuanchu.ai"
@@ -144,13 +161,13 @@
       {
         "framework": "claude-code",
         "label": "Claude Code",
-        "file": "skills/api-doc-generator/claude-code.md",
+        "file": "skills/api-doc-generator/SKILL.md",
         "description": "CLAUDE.md 斜杠命令格式"
       },
       {
         "framework": "openclaw",
         "label": "OpenClaw",
-        "file": "skills/api-doc-generator/openclaw.json",
+        "file": "skills/api-doc-generator/SKILL.md",
         "description": "OpenClaw 插件格式"
       }
     ],
@@ -172,7 +189,12 @@
     "summary": "根据源代码自动生成单元测试",
     "description": "skills/test-generator/README.md",
     "category": "coding",
-    "tags": ["testing", "unit-test", "automation", "tdd"],
+    "tags": [
+      "testing",
+      "unit-test",
+      "automation",
+      "tdd"
+    ],
     "author": {
       "name": "Jackie Zhan",
       "link": "https://yuanchu.ai"
@@ -181,13 +203,13 @@
       {
         "framework": "claude-code",
         "label": "Claude Code",
-        "file": "skills/test-generator/claude-code.md",
+        "file": "skills/test-generator/SKILL.md",
         "description": "CLAUDE.md 斜杠命令格式"
       },
       {
         "framework": "codex",
         "label": "Codex",
-        "file": "skills/test-generator/codex.md",
+        "file": "skills/test-generator/SKILL.md",
         "description": "Codex 智能体提示词格式"
       }
     ],
@@ -211,7 +233,12 @@
     "summary": "搜索最新 AI 前沿资讯，分类整理生成精美 H5 网页简报",
     "description": "skills/ai-weekly-briefing/README.md",
     "category": "writing",
-    "tags": ["ai-news", "briefing", "h5", "automation"],
+    "tags": [
+      "ai-news",
+      "briefing",
+      "h5",
+      "automation"
+    ],
     "author": {
       "name": "Jackie Zhan",
       "link": "https://yuanchu.ai"
@@ -220,19 +247,19 @@
       {
         "framework": "claude-code",
         "label": "Claude Code",
-        "file": "skills/ai-weekly-briefing/claude-code.md",
+        "file": "skills/ai-weekly-briefing/SKILL.md",
         "description": "CLAUDE.md 斜杠命令格式"
       },
       {
         "framework": "codex",
         "label": "Codex",
-        "file": "skills/ai-weekly-briefing/codex.md",
+        "file": "skills/ai-weekly-briefing/SKILL.md",
         "description": "Codex 智能体提示词格式"
       },
       {
         "framework": "openclaw",
         "label": "OpenClaw",
-        "file": "skills/ai-weekly-briefing/openclaw.json",
+        "file": "skills/ai-weekly-briefing/SKILL.md",
         "description": "OpenClaw 插件格式"
       }
     ],
@@ -254,7 +281,12 @@
     "summary": "自动搜索 AI 领域热点，生成深入浅出的技术文章 HTML 页面",
     "description": "skills/article-generator/README.md",
     "category": "writing",
-    "tags": ["article", "blog", "ai", "content-creation"],
+    "tags": [
+      "article",
+      "blog",
+      "ai",
+      "content-creation"
+    ],
     "author": {
       "name": "Jackie Zhan",
       "link": "https://yuanchu.ai"
@@ -263,19 +295,19 @@
       {
         "framework": "claude-code",
         "label": "Claude Code",
-        "file": "skills/article-generator/claude-code.md",
+        "file": "skills/article-generator/SKILL.md",
         "description": "CLAUDE.md 斜杠命令格式"
       },
       {
         "framework": "codex",
         "label": "Codex",
-        "file": "skills/article-generator/codex.md",
+        "file": "skills/article-generator/SKILL.md",
         "description": "Codex 智能体提示词格式"
       },
       {
         "framework": "openclaw",
         "label": "OpenClaw",
-        "file": "skills/article-generator/openclaw.json",
+        "file": "skills/article-generator/SKILL.md",
         "description": "OpenClaw 插件格式"
       }
     ],
@@ -297,7 +329,12 @@
     "summary": "根据主题生成精美的单文件 HTML 幻灯片演示文稿",
     "description": "skills/slide-generator/README.md",
     "category": "writing",
-    "tags": ["slides", "presentation", "html", "ppt"],
+    "tags": [
+      "slides",
+      "presentation",
+      "html",
+      "ppt"
+    ],
     "author": {
       "name": "Jackie Zhan",
       "link": "https://yuanchu.ai"
@@ -306,19 +343,19 @@
       {
         "framework": "claude-code",
         "label": "Claude Code",
-        "file": "skills/slide-generator/claude-code.md",
+        "file": "skills/slide-generator/SKILL.md",
         "description": "CLAUDE.md 斜杠命令格式"
       },
       {
         "framework": "codex",
         "label": "Codex",
-        "file": "skills/slide-generator/codex.md",
+        "file": "skills/slide-generator/SKILL.md",
         "description": "Codex 智能体提示词格式"
       },
       {
         "framework": "openclaw",
         "label": "OpenClaw",
-        "file": "skills/slide-generator/openclaw.json",
+        "file": "skills/slide-generator/SKILL.md",
         "description": "OpenClaw 插件格式"
       }
     ],
@@ -340,7 +377,12 @@
     "summary": "从会议记录提取关键决策、行动项、负责人和截止日期",
     "description": "skills/meeting-summary/README.md",
     "category": "productivity",
-    "tags": ["meeting", "summary", "productivity", "action-items"],
+    "tags": [
+      "meeting",
+      "summary",
+      "productivity",
+      "action-items"
+    ],
     "author": {
       "name": "Yuna Cheng",
       "link": "https://yuanchu.ai"
@@ -349,19 +391,19 @@
       {
         "framework": "claude-code",
         "label": "Claude Code",
-        "file": "skills/meeting-summary/claude-code.md",
+        "file": "skills/meeting-summary/SKILL.md",
         "description": "CLAUDE.md 斜杠命令格式"
       },
       {
         "framework": "codex",
         "label": "Codex",
-        "file": "skills/meeting-summary/codex.md",
+        "file": "skills/meeting-summary/SKILL.md",
         "description": "Codex 智能体提示词格式"
       },
       {
         "framework": "openclaw",
         "label": "OpenClaw",
-        "file": "skills/meeting-summary/openclaw.json",
+        "file": "skills/meeting-summary/SKILL.md",
         "description": "OpenClaw 插件格式"
       }
     ],
@@ -383,7 +425,12 @@
     "summary": "根据场景生成专业邮件，支持商务、求职、客户沟通等模板",
     "description": "skills/email-writer/README.md",
     "category": "productivity",
-    "tags": ["email", "writing", "business", "communication"],
+    "tags": [
+      "email",
+      "writing",
+      "business",
+      "communication"
+    ],
     "author": {
       "name": "Yuna Cheng",
       "link": "https://yuanchu.ai"
@@ -392,19 +439,19 @@
       {
         "framework": "claude-code",
         "label": "Claude Code",
-        "file": "skills/email-writer/claude-code.md",
+        "file": "skills/email-writer/SKILL.md",
         "description": "CLAUDE.md 斜杠命令格式"
       },
       {
         "framework": "codex",
         "label": "Codex",
-        "file": "skills/email-writer/codex.md",
+        "file": "skills/email-writer/SKILL.md",
         "description": "Codex 智能体提示词格式"
       },
       {
         "framework": "openclaw",
         "label": "OpenClaw",
-        "file": "skills/email-writer/openclaw.json",
+        "file": "skills/email-writer/SKILL.md",
         "description": "OpenClaw 插件格式"
       }
     ],
@@ -426,7 +473,12 @@
     "summary": "高质量翻译，保留语境和文化适配，支持术语表和品牌风格",
     "description": "skills/translator/README.md",
     "category": "writing",
-    "tags": ["translation", "localization", "i18n", "multilingual"],
+    "tags": [
+      "translation",
+      "localization",
+      "i18n",
+      "multilingual"
+    ],
     "author": {
       "name": "Yuna Cheng",
       "link": "https://yuanchu.ai"
@@ -435,19 +487,19 @@
       {
         "framework": "claude-code",
         "label": "Claude Code",
-        "file": "skills/translator/claude-code.md",
+        "file": "skills/translator/SKILL.md",
         "description": "CLAUDE.md 斜杠命令格式"
       },
       {
         "framework": "codex",
         "label": "Codex",
-        "file": "skills/translator/codex.md",
+        "file": "skills/translator/SKILL.md",
         "description": "Codex 智能体提示词格式"
       },
       {
         "framework": "openclaw",
         "label": "OpenClaw",
-        "file": "skills/translator/openclaw.json",
+        "file": "skills/translator/SKILL.md",
         "description": "OpenClaw 插件格式"
       }
     ],
@@ -469,7 +521,12 @@
     "summary": "根据自然语言描述生成正则表达式，附带测试用例和解释",
     "description": "skills/regex-generator/README.md",
     "category": "coding",
-    "tags": ["regex", "pattern-matching", "validation", "coding"],
+    "tags": [
+      "regex",
+      "pattern-matching",
+      "validation",
+      "coding"
+    ],
     "author": {
       "name": "Yuna Cheng",
       "link": "https://yuanchu.ai"
@@ -478,19 +535,19 @@
       {
         "framework": "claude-code",
         "label": "Claude Code",
-        "file": "skills/regex-generator/claude-code.md",
+        "file": "skills/regex-generator/SKILL.md",
         "description": "CLAUDE.md 斜杠命令格式"
       },
       {
         "framework": "codex",
         "label": "Codex",
-        "file": "skills/regex-generator/codex.md",
+        "file": "skills/regex-generator/SKILL.md",
         "description": "Codex 智能体提示词格式"
       },
       {
         "framework": "openclaw",
         "label": "OpenClaw",
-        "file": "skills/regex-generator/openclaw.json",
+        "file": "skills/regex-generator/SKILL.md",
         "description": "OpenClaw 插件格式"
       }
     ],
@@ -512,7 +569,12 @@
     "summary": "从工作记录/Git 日志自动生成结构化周报，支持多种风格",
     "description": "skills/weekly-report/README.md",
     "category": "productivity",
-    "tags": ["weekly-report", "productivity", "git", "summary"],
+    "tags": [
+      "weekly-report",
+      "productivity",
+      "git",
+      "summary"
+    ],
     "author": {
       "name": "Yuna Cheng",
       "link": "https://yuanchu.ai"
@@ -521,19 +583,19 @@
       {
         "framework": "claude-code",
         "label": "Claude Code",
-        "file": "skills/weekly-report/claude-code.md",
+        "file": "skills/weekly-report/SKILL.md",
         "description": "CLAUDE.md 斜杠命令格式"
       },
       {
         "framework": "codex",
         "label": "Codex",
-        "file": "skills/weekly-report/codex.md",
+        "file": "skills/weekly-report/SKILL.md",
         "description": "Codex 智能体提示词格式"
       },
       {
         "framework": "openclaw",
         "label": "OpenClaw",
-        "file": "skills/weekly-report/openclaw.json",
+        "file": "skills/weekly-report/SKILL.md",
         "description": "OpenClaw 插件格式"
       }
     ],
@@ -555,7 +617,12 @@
     "summary": "分析简历内容，优化措辞、突出亮点、匹配目标岗位要求",
     "description": "skills/resume-optimizer/README.md",
     "category": "productivity",
-    "tags": ["resume", "career", "job-search", "optimization"],
+    "tags": [
+      "resume",
+      "career",
+      "job-search",
+      "optimization"
+    ],
     "author": {
       "name": "Yuna Cheng",
       "link": "https://yuanchu.ai"
@@ -564,19 +631,19 @@
       {
         "framework": "claude-code",
         "label": "Claude Code",
-        "file": "skills/resume-optimizer/claude-code.md",
+        "file": "skills/resume-optimizer/SKILL.md",
         "description": "CLAUDE.md 斜杠命令格式"
       },
       {
         "framework": "codex",
         "label": "Codex",
-        "file": "skills/resume-optimizer/codex.md",
+        "file": "skills/resume-optimizer/SKILL.md",
         "description": "Codex 智能体提示词格式"
       },
       {
         "framework": "openclaw",
         "label": "OpenClaw",
-        "file": "skills/resume-optimizer/openclaw.json",
+        "file": "skills/resume-optimizer/SKILL.md",
         "description": "OpenClaw 插件格式"
       }
     ],
@@ -598,7 +665,12 @@
     "summary": "生成小红书风格种草文案，含标题、正文、标签和 emoji 排版",
     "description": "skills/xiaohongshu-writer/README.md",
     "category": "writing",
-    "tags": ["xiaohongshu", "copywriting", "social-media", "marketing"],
+    "tags": [
+      "xiaohongshu",
+      "copywriting",
+      "social-media",
+      "marketing"
+    ],
     "author": {
       "name": "Yuna Cheng",
       "link": "https://yuanchu.ai"
@@ -607,19 +679,19 @@
       {
         "framework": "claude-code",
         "label": "Claude Code",
-        "file": "skills/xiaohongshu-writer/claude-code.md",
+        "file": "skills/xiaohongshu-writer/SKILL.md",
         "description": "CLAUDE.md 斜杠命令格式"
       },
       {
         "framework": "codex",
         "label": "Codex",
-        "file": "skills/xiaohongshu-writer/codex.md",
+        "file": "skills/xiaohongshu-writer/SKILL.md",
         "description": "Codex 智能体提示词格式"
       },
       {
         "framework": "openclaw",
         "label": "OpenClaw",
-        "file": "skills/xiaohongshu-writer/openclaw.json",
+        "file": "skills/xiaohongshu-writer/SKILL.md",
         "description": "OpenClaw 插件格式"
       }
     ],
@@ -641,7 +713,12 @@
     "summary": "根据需求生成 Excel/Google Sheets 公式，支持 VLOOKUP、数据透视等",
     "description": "skills/excel-formula/README.md",
     "category": "data",
-    "tags": ["excel", "google-sheets", "formula", "data-analysis"],
+    "tags": [
+      "excel",
+      "google-sheets",
+      "formula",
+      "data-analysis"
+    ],
     "author": {
       "name": "Yuna Cheng",
       "link": "https://yuanchu.ai"
@@ -650,19 +727,19 @@
       {
         "framework": "claude-code",
         "label": "Claude Code",
-        "file": "skills/excel-formula/claude-code.md",
+        "file": "skills/excel-formula/SKILL.md",
         "description": "CLAUDE.md 斜杠命令格式"
       },
       {
         "framework": "codex",
         "label": "Codex",
-        "file": "skills/excel-formula/codex.md",
+        "file": "skills/excel-formula/SKILL.md",
         "description": "Codex 智能体提示词格式"
       },
       {
         "framework": "openclaw",
         "label": "OpenClaw",
-        "file": "skills/excel-formula/openclaw.json",
+        "file": "skills/excel-formula/SKILL.md",
         "description": "OpenClaw 插件格式"
       }
     ],
@@ -676,5 +753,53 @@
     "featured": false,
     "createdAt": "2026-03-28",
     "updatedAt": "2026-03-28"
+  },
+  {
+    "id": "resume-screener",
+    "name": "简历筛选",
+    "icon": "📋",
+    "summary": "以面试官视角多维度评估简历，输出打分排序表和风险提示",
+    "description": "skills/resume-screener/README.md",
+    "category": "productivity",
+    "tags": [
+      "resume",
+      "screening",
+      "hiring",
+      "recruitment"
+    ],
+    "author": {
+      "name": "Jackie Zhan",
+      "link": "https://yuanchu.ai"
+    },
+    "formats": [
+      {
+        "framework": "claude-code",
+        "label": "Claude Code",
+        "file": "skills/resume-screener/SKILL.md",
+        "description": "CLAUDE.md 斜杠命令格式"
+      },
+      {
+        "framework": "codex",
+        "label": "Codex",
+        "file": "skills/resume-screener/SKILL.md",
+        "description": "Codex 智能体提示词格式"
+      },
+      {
+        "framework": "openclaw",
+        "label": "OpenClaw",
+        "file": "skills/resume-screener/SKILL.md",
+        "description": "OpenClaw 插件格式"
+      }
+    ],
+    "examples": [
+      {
+        "input": "筛选 5 份 Java 高级工程师简历，JD 要求 5 年以上经验、熟悉 Spring Cloud 微服务",
+        "output": "生成 6 维度打分排序表：排名第 1 的候选人总分 4.3（A 级），技术栈高度匹配且主导过微服务拆分项目；排名末位的候选人总分 2.7（C 级），项目描述模糊且跳槽频繁"
+      }
+    ],
+    "links": {},
+    "featured": false,
+    "createdAt": "2026-03-29",
+    "updatedAt": "2026-03-29"
   }
 ]

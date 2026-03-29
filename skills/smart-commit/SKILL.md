@@ -1,4 +1,9 @@
-# Smart Commit — Claude Code Slash Command
+---
+name: 智能提交
+description: 分析 git 暂存区变更，自动生成符合 Angular Commit Convention 的 commit message
+---
+
+# 智能提交 — Claude Code
 
 ## 使用方法
 

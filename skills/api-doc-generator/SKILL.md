@@ -1,4 +1,9 @@
-# API Doc Generator — Claude Code Slash Command
+---
+name: API 文档生成
+description: 分析后端接口代码，自动生成包含请求参数、响应体、错误码的完整 API 文档
+---
+
+# API 文档生成 — Claude Code
 
 ## 使用方法
 
@@ -21,7 +26,7 @@
 4. 生成文档，格式如下：
 
 ```markdown
-# API Documentation
+# API 接口文档
 
 ## [模块名称]
 
@@ -40,16 +45,16 @@
 
 **请求示例**
 
-​```json
+```json
 {
   "name": "张三",
   "email": "zhang@example.com"
 }
-​```
+```
 
 **成功响应** `200 OK`
 
-​```json
+```json
 {
   "code": 200,
   "message": "success",
@@ -59,7 +64,7 @@
     "email": "zhang@example.com"
   }
 }
-​```
+```
 
 **错误响应**
 

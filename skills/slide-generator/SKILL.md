@@ -1,6 +1,17 @@
 ---
-name: slide-generator
-description: "HTML幻灯片演示文稿生成器：根据主题或大纲生成精美单文件HTML slides，使用卡片式设计和流畅导航。当用户提到'帮我做PPT'、'生成幻灯片'、'制作演示文稿'、'做个介绍XXX的slides'、'技术分享材料'、'培训课件'、'HTML演示'时触发。也适用于 'make a presentation'、'create slides for'、'generate HTML slides' 等英文表达。"
+name: 幻灯片生成
+description: 根据主题生成精美的单文件 HTML 幻灯片演示文稿，含卡片布局、动画和导航
+---
+
+# 幻灯片生成 — Claude Code
+
+## 使用方法
+
+在 Claude Code 中输入 `/slide-generator` 即可触发。支持自然语言指定需求，例如：
+- `/slide-generator` — 交互式创建幻灯片
+- `做一个介绍 RAG 技术的幻灯片，给工程师看`
+- `帮我做个 20 页的产品介绍 PPT`
+
 ---
 
 # 角色与原则
@@ -109,7 +120,7 @@ navGo(N) → 与 go(N) 等价
 | 金字塔 | `.pyramid` + `.pyramid-level.pyr-N` | 层级关系 | 技术栈层次 |
 | 场景卡片 | `.scenario-grid` + `.scenario-card` | 应用场景展示 | 4个用例 |
 
-**标签颜色按章节循环**：一→blue、二→purple、三→green、四→amber、五→red、六→blue…
+**标签颜色按章节循环**：一→blue、二→purple、三→green、四→amber、五→red、六→blue...
 
 ## 3.5 navMenu 结构示例
 

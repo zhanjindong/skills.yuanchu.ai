@@ -1,4 +1,9 @@
-# Test Generator — Claude Code Slash Command
+---
+name: 测试生成
+description: 分析源代码文件，自动生成覆盖正常路径、边界条件、异常处理的单元测试
+---
+
+# 测试生成 — Claude Code
 
 ## 使用方法
 

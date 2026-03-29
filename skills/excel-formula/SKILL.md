@@ -1,3 +1,8 @@
+---
+name: Excel 公式助手
+description: 根据自然语言描述生成 Excel/Google Sheets 公式，附带解释和示例
+---
+
 # Excel 公式助手 — Claude Code
 
 ## 使用方法

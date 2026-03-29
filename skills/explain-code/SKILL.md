@@ -1,4 +1,9 @@
-# Explain Code — Claude Code Slash Command
+---
+name: 代码解读
+description: 用通俗易懂的语言解释指定代码的逻辑，适合学习和快速理解陌生代码
+---
+
+# 代码解读 — Claude Code
 
 ## 使用方法
 

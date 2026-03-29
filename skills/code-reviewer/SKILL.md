@@ -1,4 +1,9 @@
-# Code Reviewer — Claude Code Slash Command
+---
+name: 代码审查
+description: 对指定代码进行全方位审查，从安全性、错误处理、性能、可维护性、规范性五个维度输出结构化审查报告
+---
+
+# 代码审查 — Claude Code
 
 ## 使用方法
 
@@ -23,30 +28,30 @@
 3. 输出审查报告，格式如下：
 
 ```markdown
-## Code Review Report
+## 代码审查报告
 
-### Critical
+### 严重问题
 - **[安全]** 第 23 行: 存在硬编码数据库密码 → 建议使用环境变量注入
   ```java
-  // Before
+  // 修改前
   String password = "admin123";
-  // After
+  // 修改后
   String password = System.getenv("DB_PASSWORD");
   ```
 
-### Warning
+### 警告
 - **[错误处理]** 第 45 行: `user.getName()` 可能抛出 NullPointerException → 建议添加空值检查
 
-### Suggestion
+### 建议
 - **[可维护性]** 第 12-67 行: 方法过长（55 行），建议拆分为多个职责单一的方法
 
-### Summary
-- Critical: 1 | Warning: 1 | Suggestion: 1
+### 汇总
+- 严重: 1 | 警告: 1 | 建议: 1
 ```
 
 ## 规则
 
 - 每个问题必须给出具体行号
-- Critical 级别问题必须给出修复后的代码示例
+- 严重级别问题必须给出修复后的代码示例
 - 不要报告纯风格偏好（如大括号换行风格），除非项目有明确规范
 - 如果代码质量良好，也要明确说明"未发现问题"
