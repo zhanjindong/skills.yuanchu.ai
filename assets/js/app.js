@@ -193,6 +193,150 @@
     });
   }
 
+  // ---- Install Section Constants & Helpers ----
+  var INSTALL_PLATFORMS = [
+    { id: 'claude-code', label: 'Claude Code', basePath: '.claude/skills' },
+    { id: 'codex', label: 'Codex', basePath: '.agents/skills' },
+    { id: 'openclaw', label: 'OpenClaw', basePath: '.openclaw/skills' }
+  ];
+
+  var INSTALL_OS = [
+    { id: 'macos', label: 'macOS' },
+    { id: 'windows', label: 'Windows' }
+  ];
+
+  function detectOS() {
+    return (navigator.platform && navigator.platform.indexOf('Win') !== -1) ? 'windows' : 'macos';
+  }
+
+  function getUniqueDirs(files, skillId) {
+    var dirs = {};
+    files.forEach(function (f) {
+      var parts = f.split('/');
+      if (parts.length > 1) {
+        for (var i = 1; i < parts.length; i++) {
+          dirs[parts.slice(0, i).join('/')] = true;
+        }
+      }
+    });
+    var result = Object.keys(dirs);
+    result.sort();
+    return result;
+  }
+
+  function getInstallBasePath(platformId, osId, skillId) {
+    var platform = INSTALL_PLATFORMS.find(function (p) { return p.id === platformId; });
+    var base = platform ? platform.basePath : '.claude/skills';
+    if (osId === 'windows') {
+      return '$env:USERPROFILE\\' + base.replace(/\//g, '\\') + '\\' + skillId;
+    }
+    return '~/' + base + '/' + skillId;
+  }
+
+  function generateInstallScript(platformId, osId, skill) {
+    var baseUrl = window.location.origin + '/skills/' + skill.id + '/';
+    var basePath = getInstallBasePath(platformId, osId, skill.id);
+    var subDirs = getUniqueDirs(skill.files, skill.id);
+
+    if (osId === 'macos') {
+      var cmds = [];
+      // mkdir for base + subdirs
+      var mkdirPaths = [basePath];
+      subDirs.forEach(function (d) { mkdirPaths.push(basePath + '/' + d); });
+      cmds.push('mkdir -p ' + mkdirPaths.join(' '));
+      // curl for each file
+      skill.files.forEach(function (f) {
+        cmds.push('curl -sL ' + baseUrl + f + ' -o ' + basePath + '/' + f);
+      });
+      return cmds.join(' && \\\n');
+    }
+
+    // Windows PowerShell
+    var lines = [];
+    var mkdirPaths = [basePath];
+    subDirs.forEach(function (d) { mkdirPaths.push(basePath + '\\' + d.replace(/\//g, '\\')); });
+    mkdirPaths.forEach(function (p) {
+      lines.push('New-Item -ItemType Directory -Force -Path "' + p + '" | Out-Null');
+    });
+    skill.files.forEach(function (f) {
+      var winFile = f.replace(/\//g, '\\');
+      lines.push('Invoke-WebRequest -Uri "' + baseUrl + f + '" -OutFile "' + basePath + '\\' + winFile + '"');
+    });
+    return lines.join('\n');
+  }
+
+  function renderInstallSection(skill) {
+    var container = document.getElementById('skill-install');
+    if (!container) return;
+
+    var currentPlatform = 'claude-code';
+    var currentOS = detectOS();
+
+    function buildHTML() {
+      var platformTabs = INSTALL_PLATFORMS.map(function (p) {
+        return '<button class="install-tab' + (p.id === currentPlatform ? ' active' : '') + '" data-platform="' + p.id + '">' + esc(p.label) + '</button>';
+      }).join('');
+
+      var osTabs = INSTALL_OS.map(function (o) {
+        return '<button class="install-tab' + (o.id === currentOS ? ' active' : '') + '" data-os="' + o.id + '">' + esc(o.label) + '</button>';
+      }).join('');
+
+      var script = generateInstallScript(currentPlatform, currentOS, skill);
+      var langLabel = currentOS === 'macos' ? 'bash' : 'powershell';
+
+      return '<p class="section-title">\u5B89\u88C5</p>'
+        + '<div class="install-selectors">'
+        + '<div class="install-selector-group" id="install-platform-tabs">' + platformTabs + '</div>'
+        + '<div class="install-selector-group" id="install-os-tabs">' + osTabs + '</div>'
+        + '</div>'
+        + '<div class="install-code-wrapper">'
+        + '<div class="install-code-header">'
+        + '<span class="install-code-lang">' + langLabel + '</span>'
+        + '<button class="install-copy-btn" id="install-copy-btn">\u590D\u5236</button>'
+        + '</div>'
+        + '<pre class="install-code" id="install-code-block"><code>' + esc(script) + '</code></pre>'
+        + '</div>';
+    }
+
+    container.innerHTML = buildHTML();
+
+    function rebind() {
+      // Platform tabs
+      container.querySelectorAll('#install-platform-tabs .install-tab').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          currentPlatform = btn.dataset.platform;
+          container.innerHTML = buildHTML();
+          rebind();
+        });
+      });
+      // OS tabs
+      container.querySelectorAll('#install-os-tabs .install-tab').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          currentOS = btn.dataset.os;
+          container.innerHTML = buildHTML();
+          rebind();
+        });
+      });
+      // Copy button
+      var copyBtn = document.getElementById('install-copy-btn');
+      if (copyBtn) {
+        copyBtn.addEventListener('click', function () {
+          var code = document.getElementById('install-code-block').textContent;
+          navigator.clipboard.writeText(code).then(function () {
+            copyBtn.textContent = '\u5DF2\u590D\u5236';
+            copyBtn.classList.add('copied');
+            setTimeout(function () {
+              copyBtn.textContent = '\u590D\u5236';
+              copyBtn.classList.remove('copied');
+            }, 2000);
+          });
+        });
+      }
+    }
+
+    rebind();
+  }
+
   // ---- Render: Skill Detail Page ----
   async function renderSkillDetail() {
     var params = new URLSearchParams(window.location.search);
@@ -330,6 +474,9 @@
       btn.disabled = false;
       btn.textContent = downloadLabel;
     });
+
+    // Install section (sidebar)
+    renderInstallSection(skill);
 
     // Meta card (sidebar)
     var metaEl = document.getElementById('skill-meta-card');

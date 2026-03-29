@@ -588,6 +588,113 @@ button { cursor: pointer; }
   flex-shrink: 0;
 }
 
+/* --- Sidebar Install Section --- */
+.install-section {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.install-section .section-title {
+  padding: 14px 20px 0;
+  margin-bottom: 8px;
+}
+
+.install-selectors {
+  padding: 0 20px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.install-selector-group {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.install-tab {
+  font-size: 12px;
+  padding: 4px 12px;
+  color: var(--muted-foreground);
+  background: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  transition: all var(--transition);
+  cursor: pointer;
+  font-family: var(--font-mono);
+}
+
+.install-tab:hover {
+  color: var(--foreground);
+  border-color: #ccc;
+}
+
+.install-tab.active {
+  color: #fff;
+  background: var(--foreground);
+  border-color: var(--foreground);
+}
+
+.install-code-wrapper {
+  border-top: 1px solid var(--border);
+}
+
+.install-code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background: #2d2d2d;
+}
+
+.install-code-lang {
+  font-size: 11px;
+  color: #888;
+  font-family: var(--font-mono);
+  text-transform: lowercase;
+}
+
+.install-copy-btn {
+  font-size: 11px;
+  padding: 3px 10px;
+  color: #ccc;
+  background: #444;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--transition);
+  font-family: var(--font-mono);
+}
+
+.install-copy-btn:hover {
+  background: #555;
+  color: #fff;
+}
+
+.install-copy-btn.copied {
+  background: var(--green);
+  color: #fff;
+}
+
+pre.install-code {
+  background: #1e1e1e;
+  padding: 14px 16px;
+  margin: 0;
+  overflow-x: auto;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+pre.install-code code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.7;
+  color: #e0e0e0;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
 /* --- Sidebar Meta Card --- */
 .meta-card {
   background: var(--card);
