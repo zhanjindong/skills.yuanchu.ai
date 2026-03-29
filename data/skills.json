@@ -15,25 +15,8 @@
       "name": "Jackie Zhan",
       "link": "https://yuanchu.ai"
     },
-    "formats": [
-      {
-        "framework": "claude-code",
-        "label": "Claude Code",
-        "file": "skills/smart-commit/SKILL.md",
-        "description": "CLAUDE.md 斜杠命令格式"
-      },
-      {
-        "framework": "codex",
-        "label": "Codex",
-        "file": "skills/smart-commit/SKILL.md",
-        "description": "Codex 智能体提示词格式"
-      },
-      {
-        "framework": "openclaw",
-        "label": "OpenClaw",
-        "file": "skills/smart-commit/SKILL.md",
-        "description": "OpenClaw 插件格式"
-      }
+    "files": [
+      "SKILL.md"
     ],
     "examples": [
       {
@@ -68,19 +51,8 @@
       "name": "Jackie Zhan",
       "link": "https://yuanchu.ai"
     },
-    "formats": [
-      {
-        "framework": "claude-code",
-        "label": "Claude Code",
-        "file": "skills/code-reviewer/SKILL.md",
-        "description": "CLAUDE.md 斜杠命令格式"
-      },
-      {
-        "framework": "codex",
-        "label": "Codex",
-        "file": "skills/code-reviewer/SKILL.md",
-        "description": "Codex 智能体提示词格式"
-      }
+    "files": [
+      "SKILL.md"
     ],
     "examples": [
       {
@@ -109,25 +81,8 @@
       "name": "Jackie Zhan",
       "link": "https://yuanchu.ai"
     },
-    "formats": [
-      {
-        "framework": "claude-code",
-        "label": "Claude Code",
-        "file": "skills/explain-code/SKILL.md",
-        "description": "CLAUDE.md 斜杠命令格式"
-      },
-      {
-        "framework": "codex",
-        "label": "Codex",
-        "file": "skills/explain-code/SKILL.md",
-        "description": "Codex 智能体提示词格式"
-      },
-      {
-        "framework": "openclaw",
-        "label": "OpenClaw",
-        "file": "skills/explain-code/SKILL.md",
-        "description": "OpenClaw 插件格式"
-      }
+    "files": [
+      "SKILL.md"
     ],
     "examples": [
       {
@@ -157,19 +112,8 @@
       "name": "Jackie Zhan",
       "link": "https://yuanchu.ai"
     },
-    "formats": [
-      {
-        "framework": "claude-code",
-        "label": "Claude Code",
-        "file": "skills/api-doc-generator/SKILL.md",
-        "description": "CLAUDE.md 斜杠命令格式"
-      },
-      {
-        "framework": "openclaw",
-        "label": "OpenClaw",
-        "file": "skills/api-doc-generator/SKILL.md",
-        "description": "OpenClaw 插件格式"
-      }
+    "files": [
+      "SKILL.md"
     ],
     "examples": [
       {
@@ -199,19 +143,8 @@
       "name": "Jackie Zhan",
       "link": "https://yuanchu.ai"
     },
-    "formats": [
-      {
-        "framework": "claude-code",
-        "label": "Claude Code",
-        "file": "skills/test-generator/SKILL.md",
-        "description": "CLAUDE.md 斜杠命令格式"
-      },
-      {
-        "framework": "codex",
-        "label": "Codex",
-        "file": "skills/test-generator/SKILL.md",
-        "description": "Codex 智能体提示词格式"
-      }
+    "files": [
+      "SKILL.md"
     ],
     "examples": [
       {
@@ -243,25 +176,9 @@
       "name": "Jackie Zhan",
       "link": "https://yuanchu.ai"
     },
-    "formats": [
-      {
-        "framework": "claude-code",
-        "label": "Claude Code",
-        "file": "skills/ai-weekly-briefing/SKILL.md",
-        "description": "CLAUDE.md 斜杠命令格式"
-      },
-      {
-        "framework": "codex",
-        "label": "Codex",
-        "file": "skills/ai-weekly-briefing/SKILL.md",
-        "description": "Codex 智能体提示词格式"
-      },
-      {
-        "framework": "openclaw",
-        "label": "OpenClaw",
-        "file": "skills/ai-weekly-briefing/SKILL.md",
-        "description": "OpenClaw 插件格式"
-      }
+    "files": [
+      "SKILL.md",
+      "assets/template.html"
     ],
     "examples": [
       {
@@ -291,25 +208,9 @@
       "name": "Jackie Zhan",
       "link": "https://yuanchu.ai"
     },
-    "formats": [
-      {
-        "framework": "claude-code",
-        "label": "Claude Code",
-        "file": "skills/article-generator/SKILL.md",
-        "description": "CLAUDE.md 斜杠命令格式"
-      },
-      {
-        "framework": "codex",
-        "label": "Codex",
-        "file": "skills/article-generator/SKILL.md",
-        "description": "Codex 智能体提示词格式"
-      },
-      {
-        "framework": "openclaw",
-        "label": "OpenClaw",
-        "file": "skills/article-generator/SKILL.md",
-        "description": "OpenClaw 插件格式"
-      }
+    "files": [
+      "SKILL.md",
+      "assets/template.html"
     ],
     "examples": [
       {
@@ -339,25 +240,9 @@
       "name": "Jackie Zhan",
       "link": "https://yuanchu.ai"
     },
-    "formats": [
-      {
-        "framework": "claude-code",
-        "label": "Claude Code",
-        "file": "skills/slide-generator/SKILL.md",
-        "description": "CLAUDE.md 斜杠命令格式"
-      },
-      {
-        "framework": "codex",
-        "label": "Codex",
-        "file": "skills/slide-generator/SKILL.md",
-        "description": "Codex 智能体提示词格式"
-      },
-      {
-        "framework": "openclaw",
-        "label": "OpenClaw",
-        "file": "skills/slide-generator/SKILL.md",
-        "description": "OpenClaw 插件格式"
-      }
+    "files": [
+      "SKILL.md",
+      "assets/template.html"
     ],
     "examples": [
       {
@@ -387,25 +272,8 @@
       "name": "Yuna Cheng",
       "link": "https://yuanchu.ai"
     },
-    "formats": [
-      {
-        "framework": "claude-code",
-        "label": "Claude Code",
-        "file": "skills/meeting-summary/SKILL.md",
-        "description": "CLAUDE.md 斜杠命令格式"
-      },
-      {
-        "framework": "codex",
-        "label": "Codex",
-        "file": "skills/meeting-summary/SKILL.md",
-        "description": "Codex 智能体提示词格式"
-      },
-      {
-        "framework": "openclaw",
-        "label": "OpenClaw",
-        "file": "skills/meeting-summary/SKILL.md",
-        "description": "OpenClaw 插件格式"
-      }
+    "files": [
+      "SKILL.md"
     ],
     "examples": [
       {
@@ -435,25 +303,8 @@
       "name": "Yuna Cheng",
       "link": "https://yuanchu.ai"
     },
-    "formats": [
-      {
-        "framework": "claude-code",
-        "label": "Claude Code",
-        "file": "skills/email-writer/SKILL.md",
-        "description": "CLAUDE.md 斜杠命令格式"
-      },
-      {
-        "framework": "codex",
-        "label": "Codex",
-        "file": "skills/email-writer/SKILL.md",
-        "description": "Codex 智能体提示词格式"
-      },
-      {
-        "framework": "openclaw",
-        "label": "OpenClaw",
-        "file": "skills/email-writer/SKILL.md",
-        "description": "OpenClaw 插件格式"
-      }
+    "files": [
+      "SKILL.md"
     ],
     "examples": [
       {
@@ -483,25 +334,8 @@
       "name": "Yuna Cheng",
       "link": "https://yuanchu.ai"
     },
-    "formats": [
-      {
-        "framework": "claude-code",
-        "label": "Claude Code",
-        "file": "skills/translator/SKILL.md",
-        "description": "CLAUDE.md 斜杠命令格式"
-      },
-      {
-        "framework": "codex",
-        "label": "Codex",
-        "file": "skills/translator/SKILL.md",
-        "description": "Codex 智能体提示词格式"
-      },
-      {
-        "framework": "openclaw",
-        "label": "OpenClaw",
-        "file": "skills/translator/SKILL.md",
-        "description": "OpenClaw 插件格式"
-      }
+    "files": [
+      "SKILL.md"
     ],
     "examples": [
       {
@@ -531,25 +365,8 @@
       "name": "Yuna Cheng",
       "link": "https://yuanchu.ai"
     },
-    "formats": [
-      {
-        "framework": "claude-code",
-        "label": "Claude Code",
-        "file": "skills/regex-generator/SKILL.md",
-        "description": "CLAUDE.md 斜杠命令格式"
-      },
-      {
-        "framework": "codex",
-        "label": "Codex",
-        "file": "skills/regex-generator/SKILL.md",
-        "description": "Codex 智能体提示词格式"
-      },
-      {
-        "framework": "openclaw",
-        "label": "OpenClaw",
-        "file": "skills/regex-generator/SKILL.md",
-        "description": "OpenClaw 插件格式"
-      }
+    "files": [
+      "SKILL.md"
     ],
     "examples": [
       {
@@ -579,25 +396,8 @@
       "name": "Yuna Cheng",
       "link": "https://yuanchu.ai"
     },
-    "formats": [
-      {
-        "framework": "claude-code",
-        "label": "Claude Code",
-        "file": "skills/weekly-report/SKILL.md",
-        "description": "CLAUDE.md 斜杠命令格式"
-      },
-      {
-        "framework": "codex",
-        "label": "Codex",
-        "file": "skills/weekly-report/SKILL.md",
-        "description": "Codex 智能体提示词格式"
-      },
-      {
-        "framework": "openclaw",
-        "label": "OpenClaw",
-        "file": "skills/weekly-report/SKILL.md",
-        "description": "OpenClaw 插件格式"
-      }
+    "files": [
+      "SKILL.md"
     ],
     "examples": [
       {
@@ -627,25 +427,8 @@
       "name": "Yuna Cheng",
       "link": "https://yuanchu.ai"
     },
-    "formats": [
-      {
-        "framework": "claude-code",
-        "label": "Claude Code",
-        "file": "skills/resume-optimizer/SKILL.md",
-        "description": "CLAUDE.md 斜杠命令格式"
-      },
-      {
-        "framework": "codex",
-        "label": "Codex",
-        "file": "skills/resume-optimizer/SKILL.md",
-        "description": "Codex 智能体提示词格式"
-      },
-      {
-        "framework": "openclaw",
-        "label": "OpenClaw",
-        "file": "skills/resume-optimizer/SKILL.md",
-        "description": "OpenClaw 插件格式"
-      }
+    "files": [
+      "SKILL.md"
     ],
     "examples": [
       {
@@ -675,25 +458,8 @@
       "name": "Yuna Cheng",
       "link": "https://yuanchu.ai"
     },
-    "formats": [
-      {
-        "framework": "claude-code",
-        "label": "Claude Code",
-        "file": "skills/xiaohongshu-writer/SKILL.md",
-        "description": "CLAUDE.md 斜杠命令格式"
-      },
-      {
-        "framework": "codex",
-        "label": "Codex",
-        "file": "skills/xiaohongshu-writer/SKILL.md",
-        "description": "Codex 智能体提示词格式"
-      },
-      {
-        "framework": "openclaw",
-        "label": "OpenClaw",
-        "file": "skills/xiaohongshu-writer/SKILL.md",
-        "description": "OpenClaw 插件格式"
-      }
+    "files": [
+      "SKILL.md"
     ],
     "examples": [
       {
@@ -723,25 +489,8 @@
       "name": "Yuna Cheng",
       "link": "https://yuanchu.ai"
     },
-    "formats": [
-      {
-        "framework": "claude-code",
-        "label": "Claude Code",
-        "file": "skills/excel-formula/SKILL.md",
-        "description": "CLAUDE.md 斜杠命令格式"
-      },
-      {
-        "framework": "codex",
-        "label": "Codex",
-        "file": "skills/excel-formula/SKILL.md",
-        "description": "Codex 智能体提示词格式"
-      },
-      {
-        "framework": "openclaw",
-        "label": "OpenClaw",
-        "file": "skills/excel-formula/SKILL.md",
-        "description": "OpenClaw 插件格式"
-      }
+    "files": [
+      "SKILL.md"
     ],
     "examples": [
       {
@@ -771,25 +520,8 @@
       "name": "Jackie Zhan",
       "link": "https://yuanchu.ai"
     },
-    "formats": [
-      {
-        "framework": "claude-code",
-        "label": "Claude Code",
-        "file": "skills/resume-screener/SKILL.md",
-        "description": "CLAUDE.md 斜杠命令格式"
-      },
-      {
-        "framework": "codex",
-        "label": "Codex",
-        "file": "skills/resume-screener/SKILL.md",
-        "description": "Codex 智能体提示词格式"
-      },
-      {
-        "framework": "openclaw",
-        "label": "OpenClaw",
-        "file": "skills/resume-screener/SKILL.md",
-        "description": "OpenClaw 插件格式"
-      }
+    "files": [
+      "SKILL.md"
     ],
     "examples": [
       {

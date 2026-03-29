@@ -142,8 +142,6 @@
     }
 
     container.innerHTML = skills.map(function (skill, index) {
-      var fileName = skill.id + '.md';
-      var formatsCount = skill.formats.length;
       var catIcon = getCategoryIcon(skill.category);
       var catLabel = getCategoryLabel(skill.category);
       var authorName = skill.author ? skill.author.name : 'unknown';
@@ -157,7 +155,7 @@
         + '<span class="dot green"></span>'
         + '</div>'
         + '<span class="card-filename">' + esc(skill.name) + '</span>'
-        + '<span class="card-stars">★ ' + formatsCount + ' formats</span>'
+        + '<span class="card-stars">★ ' + skill.files.length + ' files</span>'
         + '</div>'
         + '<div class="card-body">'
         + '<div class="card-source">'
@@ -273,39 +271,64 @@
 
     // Downloads (sidebar)
     var downloadsEl = document.getElementById('skill-downloads');
+    var fileCount = skill.files.length;
+    var downloadLabel = fileCount === 1 ? '下载 SKILL.md' : '下载 Skill（' + fileCount + ' 个文件）';
     downloadsEl.innerHTML =
-      '<p class="section-title">DOWNLOAD</p>'
-      + skill.formats.map(function (f) {
-        var rawName = f.file.split('/').pop();
-        var ext = rawName.indexOf('.') !== -1 ? rawName.substring(rawName.indexOf('.')) : '';
-        var fileName = skill.id + '-' + f.framework + ext;
-        return '<div class="download-item">'
-          + '<div class="download-item-inner">'
-          + '<div class="download-info">'
-          + '<div class="download-framework">' + esc(f.label) + '</div>'
-          + '<div class="download-desc">' + esc(f.description) + '</div>'
-          + '</div>'
-          + '<button class="download-btn" data-file="' + esc(f.file) + '" data-name="' + esc(fileName) + '">Download</button>'
-          + '</div>'
-          + '</div>';
-      }).join('');
+      '<p class="section-title">下载</p>'
+      + '<div class="download-item">'
+      + '<div class="download-item-inner">'
+      + '<div class="download-info">'
+      + '<div class="download-framework">' + esc(skill.name) + '</div>'
+      + '<div class="download-desc">跨平台通用格式（Claude Code / Codex / OpenClaw）</div>'
+      + '</div>'
+      + '<button class="download-btn" id="download-skill-btn">' + downloadLabel + '</button>'
+      + '</div>'
+      + '</div>';
 
-    // Bind download buttons
-    downloadsEl.querySelectorAll('.download-btn').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var filePath = btn.dataset.file;
-        var fileName = btn.dataset.name;
-        fetch(filePath).then(function (res) { return res.blob(); }).then(function (blob) {
+    // Bind download button
+    document.getElementById('download-skill-btn').addEventListener('click', async function () {
+      var btn = this;
+      btn.disabled = true;
+      btn.textContent = '打包中...';
+      try {
+        if (fileCount === 1) {
+          // Single file: download directly
+          var filePath = 'skills/' + skill.id + '/' + skill.files[0];
+          var res = await fetch(filePath);
+          var blob = await res.blob();
           var url = URL.createObjectURL(blob);
           var a = document.createElement('a');
           a.href = url;
-          a.download = fileName;
+          a.download = skill.files[0];
           document.body.appendChild(a);
           a.click();
           document.body.removeChild(a);
           URL.revokeObjectURL(url);
-        });
-      });
+        } else {
+          // Multiple files: zip them
+          var zip = new JSZip();
+          var folder = zip.folder(skill.id);
+          var fetches = skill.files.map(function (f) {
+            return fetch('skills/' + skill.id + '/' + f)
+              .then(function (res) { return res.blob(); })
+              .then(function (blob) { folder.file(f, blob); });
+          });
+          await Promise.all(fetches);
+          var content = await zip.generateAsync({ type: 'blob' });
+          var url = URL.createObjectURL(content);
+          var a = document.createElement('a');
+          a.href = url;
+          a.download = skill.id + '.zip';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        }
+      } catch (e) {
+        console.error('Download failed:', e);
+      }
+      btn.disabled = false;
+      btn.textContent = downloadLabel;
     });
 
     // Meta card (sidebar)
@@ -318,7 +341,7 @@
       metaEl.innerHTML =
         '<div class="meta-row"><span class="meta-label">作者</span><span class="meta-value">' + authorHtml + '</span></div>'
         + '<div class="meta-row"><span class="meta-label">分类</span><span class="meta-value">' + catIcon + ' ' + esc(catLabel) + '</span></div>'
-        + '<div class="meta-row"><span class="meta-label">格式</span><span class="meta-value">' + skill.formats.length + ' formats</span></div>'
+        + '<div class="meta-row"><span class="meta-label">格式</span><span class="meta-value">' + skill.files.length + ' 个文件</span></div>'
         + '<div class="meta-row"><span class="meta-label">更新</span><span class="meta-value">' + esc(skill.updatedAt) + '</span></div>'
         + '<div class="meta-row"><span class="meta-label">创建</span><span class="meta-value">' + esc(skill.createdAt) + '</span></div>'
         + (linksHtml ? '<div class="meta-row"><span class="meta-label">链接</span><span class="meta-value">' + linksHtml + '</span></div>' : '');
