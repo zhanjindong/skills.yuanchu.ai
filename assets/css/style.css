@@ -682,8 +682,6 @@ pre.install-code {
   padding: 14px 16px;
   margin: 0;
   overflow-x: auto;
-  max-height: 200px;
-  overflow-y: auto;
 }
 
 pre.install-code code {
