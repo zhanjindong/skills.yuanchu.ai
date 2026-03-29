@@ -436,11 +436,10 @@
       btn.textContent = '打包中...';
       try {
         if (fileCount === 1) {
-          // Single file: download as raw text to avoid GitHub Pages HTML rendering
+          // Single file: download directly
           var filePath = 'skills/' + skill.id + '/' + skill.files[0];
-          var res = await fetch(filePath, { headers: { 'Accept': 'text/plain' } });
-          var text = await res.text();
-          var blob = new Blob([text], { type: 'text/plain' });
+          var res = await fetch(filePath);
+          var blob = await res.blob();
           var url = URL.createObjectURL(blob);
           var a = document.createElement('a');
           a.href = url;
@@ -450,13 +449,13 @@
           document.body.removeChild(a);
           URL.revokeObjectURL(url);
         } else {
-          // Multiple files: zip them — fetch as text to preserve raw content
+          // Multiple files: zip them
           var zip = new JSZip();
           var folder = zip.folder(skill.id);
           var fetches = skill.files.map(function (f) {
-            return fetch('skills/' + skill.id + '/' + f, { headers: { 'Accept': 'text/plain' } })
-              .then(function (res) { return res.text(); })
-              .then(function (text) { folder.file(f, text); });
+            return fetch('skills/' + skill.id + '/' + f)
+              .then(function (res) { return res.blob(); })
+              .then(function (blob) { folder.file(f, blob); });
           });
           await Promise.all(fetches);
           var content = await zip.generateAsync({ type: 'blob' });
