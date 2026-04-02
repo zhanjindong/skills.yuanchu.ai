@@ -533,5 +533,37 @@
     "featured": false,
     "createdAt": "2026-03-29",
     "updatedAt": "2026-03-29"
+  },
+  {
+    "id": "interview-question-generator",
+    "name": "面试提问",
+    "icon": "🎯",
+    "summary": "基于候选人简历自动生成复试面试问题，覆盖 5 大考察维度",
+    "description": "skills/interview-question-generator/README.md",
+    "category": "productivity",
+    "tags": [
+      "interview",
+      "hiring",
+      "recruitment",
+      "resume"
+    ],
+    "author": {
+      "name": "Jackie Zhan",
+      "link": "https://yuanchu.ai"
+    },
+    "files": [
+      "SKILL.md",
+      "assets/template.html"
+    ],
+    "examples": [
+      {
+        "input": "根据这份 Java 高级工程师简历生成复试问题，重点关注架构能力",
+        "output": "生成 HTML 面试提问清单，含 5 维度共 12 个针对性问题、每题带记录文本框、红旗清单和 30 分钟节奏建议"
+      }
+    ],
+    "links": {},
+    "featured": false,
+    "createdAt": "2026-04-02",
+    "updatedAt": "2026-04-02"
   }
 ]
