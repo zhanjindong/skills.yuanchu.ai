@@ -565,5 +565,69 @@
     "featured": false,
     "createdAt": "2026-04-02",
     "updatedAt": "2026-04-02"
+  },
+  {
+    "id": "paper-analyzer",
+    "name": "论文深度解读",
+    "icon": "📄",
+    "summary": "深度解读 AI/CS 领域学术论文，生成结构化 HTML 解读页面",
+    "description": "skills/paper-analyzer/README.md",
+    "category": "writing",
+    "tags": [
+      "paper",
+      "research",
+      "analysis",
+      "ai"
+    ],
+    "author": {
+      "name": "Jackie Zhan",
+      "link": "https://yuanchu.ai"
+    },
+    "files": [
+      "SKILL.md",
+      "assets/template.html"
+    ],
+    "examples": [
+      {
+        "input": "解读这篇论文 arxiv.org/abs/2401.xxxxx",
+        "output": "生成一篇 3000-6000 字的结构化论文解读 HTML 页面，含论文信息卡、方法架构图、实验分析、5 维度评分卡和行动建议"
+      }
+    ],
+    "links": {},
+    "featured": true,
+    "createdAt": "2026-04-10",
+    "updatedAt": "2026-04-10"
+  },
+  {
+    "id": "roadmap-generator",
+    "name": "路标图生成",
+    "icon": "🗺️",
+    "summary": "从 Excel 或描述中生成多维度时间轴路标图，适合工作汇报",
+    "description": "skills/roadmap-generator/README.md",
+    "category": "productivity",
+    "tags": [
+      "roadmap",
+      "timeline",
+      "planning",
+      "visualization"
+    ],
+    "author": {
+      "name": "Jackie Zhan",
+      "link": "https://yuanchu.ai"
+    },
+    "files": [
+      "SKILL.md",
+      "assets/template.html"
+    ],
+    "examples": [
+      {
+        "input": "把路标.xlsx 的内容按四个维度整理成时间轴路标图",
+        "output": "生成多维度泳道式时间轴 HTML 页面，按版本分列、按维度分行，色块标签 + 有序列表内容，适合投屏汇报"
+      }
+    ],
+    "links": {},
+    "featured": true,
+    "createdAt": "2026-04-14",
+    "updatedAt": "2026-04-14"
   }
 ]

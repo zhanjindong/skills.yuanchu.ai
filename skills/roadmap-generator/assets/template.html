@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大模型应用开发平台路标规划</title>
+<style>
+  :root {
+    --font: 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+    --blue: #60a5fa;
+    --purple: #a78bfa;
+    --amber: #fbbf24;
+    --green: #6ee7b7;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-400: #9ca3af;
+    --gray-600: #4b5563;
+    --gray-800: #1f2937;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--font);
+    background: white;
+    color: var(--gray-800);
+    padding: 40px 40px;
+  }
+
+  /* Header */
+  .header {
+    border-bottom: 3px solid var(--gray-800);
+    padding-bottom: 16px;
+    margin-bottom: 28px;
+  }
+  .header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .header .meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 6px;
+    font-size: 13px;
+    color: var(--gray-600);
+  }
+
+  /* Table */
+  .roadmap {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    table-layout: fixed;
+  }
+  .roadmap col.label { width: 110px; }
+  .roadmap col.cell  { width: auto; }
+
+  /* Header */
+  .roadmap thead th {
+    padding: 10px 6px;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--gray-600);
+    border-bottom: 1px solid var(--gray-200);
+    text-align: center;
+    vertical-align: bottom;
+  }
+  .roadmap thead th.corner { border-bottom: none; }
+  .roadmap thead .ver {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-right: 6px;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 1px 7px;
+    border-radius: 3px;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+  }
+  .badge-done { background: #dcfce7; color: #166534; }
+  .badge-wip  { background: #fef9c3; color: #854d0e; }
+  .roadmap thead .date {
+    font-size: 12px;
+    color: var(--gray-400);
+    margin-top: 2px;
+  }
+
+  /* Timeline bar */
+  .timeline-bar td {
+    padding: 0; height: 18px; position: relative; border: none; background: transparent;
+  }
+  .timeline-bar td.corner { border: none; }
+  /* Collapse spacing for header rows */
+  .roadmap thead th { border: none; }
+  .timeline-bar td::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: 50%;
+    height: 2px;
+    background: var(--gray-200);
+  }
+  .timeline-bar td .node {
+    width: 10px; height: 10px;
+    background: var(--gray-800);
+    border-radius: 50%;
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1;
+  }
+
+  /* Body cells */
+  .roadmap tbody td {
+    padding: 12px 10px;
+    vertical-align: top;
+    font-size: 12.5px;
+    line-height: 1.7;
+    border: 1px solid var(--gray-200);
+  }
+  /* Remove double borders between cells */
+  .roadmap tbody td + td {
+    border-left: none;
+  }
+
+  /* Dimension label */
+  td.dim-label {
+    font-weight: 700;
+    font-size: 13px;
+    text-align: center;
+    vertical-align: middle;
+    color: var(--gray-800);
+    border: 1px solid var(--gray-200);
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+    padding: 0;
+    height: 1px; /* trick to allow inner div to fill height */
+  }
+  td.dim-label .label-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    height: 100%;
+    padding: 14px 6px;
+  }
+  .bg-blue   { background: var(--blue); }
+  .bg-purple { background: var(--purple); }
+  .bg-amber  { background: var(--amber); }
+  .bg-green  { background: var(--green); }
+
+  /* Content cells */
+  td.content { background: white; }
+  td.content.has-data { border-left: 3px solid transparent; }
+  .d-blue   td.content.has-data { border-left-color: var(--blue); }
+  .d-purple td.content.has-data { border-left-color: var(--purple); }
+  .d-amber  td.content.has-data { border-left-color: var(--amber); }
+  .d-green  td.content.has-data { border-left-color: var(--green); }
+  td.content.empty-cell {
+    color: var(--gray-400);
+    text-align: center;
+    vertical-align: middle;
+    background: var(--gray-50);
+  }
+
+  /* List items */
+  .roadmap ol {
+    margin: 0;
+    padding-left: 16px;
+  }
+  .roadmap ol li {
+    margin-bottom: 5px;
+  }
+  .roadmap ol li:last-child { margin-bottom: 0; }
+
+
+  /* Print */
+  @media print {
+    body { padding: 16px; }
+    .roadmap { font-size: 11px; }
+    td.content.has-data { border-left-width: 2px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>大模型应用开发平台路标规划</h1>
+  <div class="meta">
+    <span>更新日期：2026.04</span>
+  </div>
+</div>
+
+<table class="roadmap">
+<colgroup>
+  <col class="label">
+  <col class="cell"><col class="cell"><col class="cell">
+  <col class="cell"><col class="cell"><col class="cell">
+</colgroup>
+
+<thead>
+  <tr>
+    <th class="corner"></th>
+    <th><span class="ver">V3.0.1</span> <span class="badge badge-done">已发布</span><div class="date">03.15</div></th>
+    <th><span class="ver">V3.0.2</span> <span class="badge badge-wip">进行中</span><div class="date">04.28</div></th>
+    <th><span class="ver">V3.0.3</span><div class="date">05.28</div></th>
+    <th><span class="ver">V3.0.4</span><div class="date">06.30</div></th>
+    <th><span class="ver">V3.1.1</span><div class="date">09.28</div></th>
+    <th><span class="ver">V3.1.2</span><div class="date">12.20</div></th>
+  </tr>
+  <tr class="timeline-bar">
+    <td class="corner"></td>
+    <td><div class="node"></div></td>
+    <td><div class="node"></div></td>
+    <td><div class="node"></div></td>
+    <td><div class="node"></div></td>
+    <td><div class="node"></div></td>
+    <td><div class="node"></div></td>
+  </tr>
+</thead>
+
+<tbody>
+
+<!-- ===== AI中小解决方案建设 ===== -->
+<tr class="d-blue">
+  <td class="dim-label bg-blue"><div class="label-wrap">AI中小<br>解决方案<br>建设</div></td>
+
+  <!-- V3.0.1 -->
+  <td class="content has-data"><ol>
+    <li>完成全学科错题本1.0建设，在学习机"错题本"应用落地，支撑个性化学习闭环能力提升；</li>
+    <li>完成心理健康助手1.0建设，在学习机"减压绿洲"应用落地，强化学生心理关怀与智能化陪伴体验。</li>
+  </ol></td>
+
+  <!-- V3.0.2 -->
+  <td class="content has-data"><ol>
+    <li>完成多学科试题过滤1.0建设，在学习机"AI作业过滤"应用落地，提升作业内容筛选的精准性与效率；</li>
+    <li>完成全双工虚拟数字人对话助手1.0建设，在大课堂（4.25教育装备展）及科创（联合国中文日活动）实现重点场景落地，验证多场景交互与展示效果。</li>
+    <li>批阅机海外批改解决方案。</li>
+  </ol></td>
+
+  <!-- V3.0.3 -->
+  <td class="content has-data"><ol>
+    <li>全双工虚拟数字人对话助手2.0，扩展新角色声音复刻能力，并在大课堂数字教育大会场景中实现应用演示，提升智能教学交互的沉浸感与展示效果。</li>
+  </ol></td>
+
+  <!-- V3.0.4 -->
+  <td class="content empty-cell">&mdash;</td>
+  <!-- V3.1.1 -->
+  <td class="content empty-cell">&mdash;</td>
+  <!-- V3.1.2 -->
+  <td class="content empty-cell">&mdash;</td>
+</tr>
+
+
+<!-- ===== 平台建设与开放 ===== -->
+<tr class="d-purple">
+  <td class="dim-label bg-purple"><div class="label-wrap">平台建设<br>与开放</div></td>
+
+  <!-- V3.0.1 -->
+  <td class="content has-data"><ol>
+    <li>0-1建设大模型应用开发门户基础功能，面向大课堂、学习机试点业务线开放，实现20%AI需求业务线自主研发；</li>
+    <li>发布超级智能体（自主规划编排）体验版本，验证业务自主编排能力。</li>
+  </ol></td>
+
+  <!-- V3.0.2 -->
+  <td class="content has-data"><ol>
+    <li>模型代理和MCP等工具覆盖率60％，新的AI工具100%建设；面向大课堂、学习机业务线开放，实现40%的AI需求业务线自主研发。</li>
+  </ol></td>
+
+  <!-- V3.0.3 -->
+  <td class="content has-data"><ol>
+    <li>模型代理和MCP等工具覆盖率80％，新的AI工具100%建设，实现3天可发布；面向BG所有业务线开放，实现60%的AI需求业务自主研发；</li>
+    <li>发布超级智能体正式版本，实现需求、研发、测试到运营一站式服务。</li>
+  </ol></td>
+
+  <!-- V3.0.4 -->
+  <td class="content has-data"><ol>
+    <li>模型代理和MCP等工具覆盖率100％，完善知识库、记忆系统、模型计费等高级功能；面向BG所有业务线开放，实现80%的AI需求业务自主研发；</li>
+    <li>评测系统1.0首版本发布上线，建设智能体一站式功能和效果评测。</li>
+  </ol></td>
+
+  <!-- V3.1.1 -->
+  <td class="content has-data"><ol>
+    <li>六大AI系统解决方案50%原子能力下沉可复用；</li>
+    <li>探索智能体开发新模式，完善Skills管理、上下文、记忆、多模态等核心能力；</li>
+    <li>评测系统2.0版本发布，实现一站式智能体自动化功能测试、效果测试和性能测试。</li>
+  </ol></td>
+
+  <!-- V3.1.2 -->
+  <td class="content has-data"><ol>
+    <li>六大AI系统解决方案100%原子能力下沉可复用；</li>
+    <li>实现自动化运营与计费全链路闭环。</li>
+  </ol></td>
+</tr>
+
+
+<!-- ===== 教育统一大模型 ===== -->
+<tr class="d-amber">
+  <td class="dim-label bg-amber"><div class="label-wrap">教育统一<br>大模型</div></td>
+
+  <!-- V3.0.1 -->
+  <td class="content has-data"><ol>
+    <li>版本计划和联调计划对齐；</li>
+    <li>统一接口协议设计；</li>
+    <li>成本分摊机制对齐。</li>
+  </ol></td>
+
+  <!-- V3.0.2 -->
+  <td class="content has-data"><ol>
+    <li>教育统一大模型集中部署首版本上线，提供统一标准API接入。</li>
+  </ol></td>
+
+  <!-- V3.0.3 -->
+  <td class="content has-data"><ol>
+    <li>教育统一大模型计费功能发布，完善费用分摊机制。</li>
+  </ol></td>
+
+  <!-- V3.0.4 -->
+  <td class="content has-data"><ol>
+    <li>教育统一大模型集中部署，集群可用性优化（灰度、潮汐和并发控制）。</li>
+  </ol></td>
+
+  <!-- V3.1.1 -->
+  <td class="content empty-cell">&mdash;</td>
+  <!-- V3.1.2 -->
+  <td class="content empty-cell">&mdash;</td>
+</tr>
+
+
+<!-- ===== 架构演进与治理 ===== -->
+<tr class="d-green">
+  <td class="dim-label bg-green"><div class="label-wrap">架构演进<br>与治理</div></td>
+
+  <!-- V3.0.1 -->
+  <td class="content has-data"><ol>
+    <li>AI能力平台从6个集群合并至2个集群；</li>
+    <li>大模型能力平台分区合并，从7个集群合并至2个集群。</li>
+  </ol></td>
+
+  <!-- V3.0.2 -->
+  <td class="content has-data"><ol>
+    <li>存量AI能力1.0部署集群从6个收敛到2个，大模型2.0部署集群从7个收敛到4个；</li>
+    <li>存量引擎数量收敛100+，下降20%+。</li>
+  </ol></td>
+
+  <!-- V3.0.3 -->
+  <td class="content empty-cell">&mdash;</td>
+
+  <!-- V3.0.4 -->
+  <td class="content has-data"><ol>
+    <li>大模型2.0部署集群从4个收敛到2个；</li>
+    <li>存量引擎数量收敛150+，下降30%+。</li>
+  </ol></td>
+
+  <!-- V3.1.1 -->
+  <td class="content empty-cell">&mdash;</td>
+  <!-- V3.1.2 -->
+  <td class="content empty-cell">&mdash;</td>
+</tr>
+
+</tbody>
+</table>
+
+</body>
+</html>
