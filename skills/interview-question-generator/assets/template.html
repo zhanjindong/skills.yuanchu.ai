@@ -13,8 +13,8 @@ body{
 }
 
 /* ---- Header ---- */
-.header{background:#1e293b;color:#fff;padding:18px 0;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.15);}
-.header-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.header{background:#1e293b;color:#fff;padding:12px 0;position:fixed;top:0;left:0;right:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.15);}
+.header-inner{max-width:900px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
 .header h1{font-size:20px;font-weight:600;letter-spacing:1px;}
 .header-meta{display:flex;gap:12px;font-size:13px;color:rgba(255,255,255,.7);margin-top:4px;flex-wrap:wrap;}
 .header-meta span{background:rgba(255,255,255,.1);padding:2px 10px;border-radius:12px;}
@@ -22,25 +22,25 @@ body{
 .header-actions button{background:rgba(255,255,255,.15);color:#fff;border:none;padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer;transition:background .2s;}
 .header-actions button:hover{background:rgba(255,255,255,.25);}
 
-/* ---- Layout: sidebar + main ---- */
-.layout{max-width:1200px;margin:0 auto;display:flex;gap:0;min-height:calc(100vh - 64px);}
+/* ---- Single-column Layout ---- */
+.main{max-width:900px;margin:0 auto;padding:24px;}
 
-/* ---- Left Sidebar Nav ---- */
-.sidebar{width:200px;flex-shrink:0;padding:20px 0 20px 24px;position:sticky;top:64px;align-self:flex-start;max-height:calc(100vh - 64px);overflow-y:auto;overscroll-behavior:contain;}
-.sidebar::-webkit-scrollbar{width:3px;}
-.sidebar::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px;}
-.nav-section{margin-bottom:16px;}
-.nav-section-title{font-size:11px;color:#94a3b8;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;padding-left:10px;}
-.nav-link{display:block;font-size:13px;color:#64748b;text-decoration:none;padding:5px 10px;border-radius:6px;border-left:2px solid transparent;transition:all .15s;line-height:1.5;margin-bottom:1px;}
-.nav-link:hover{background:#e2e8f0;color:#1e293b;}
-.nav-link.active{background:#eff6ff;color:#3b82f6;border-left-color:#3b82f6;font-weight:600;}
-.nav-divider{height:1px;background:#e2e8f0;margin:12px 10px;}
-.nav-link.flag{color:#dc2626;}
-.nav-link.flag:hover{background:#fef2f2;}
-.nav-link.flag.active{background:#fef2f2;border-left-color:#dc2626;}
-
-/* ---- Main Content ---- */
-.main{flex:1;min-width:0;padding:24px 24px 24px 20px;}
+/* ---- Top Navigation (replaces sidebar) ---- */
+.topnav{background:#fff;padding:8px 0;position:fixed;top:0;left:0;right:0;z-index:90;box-shadow:0 1px 3px rgba(0,0,0,.08);border-bottom:1px solid #e2e8f0;}
+.topnav-inner{max-width:900px;margin:0 auto;padding:0 24px;}
+.fixed-spacer{height:10px;}
+.topnav-title{font-size:13px;font-weight:600;color:#94a3b8;letter-spacing:1.5px;margin-bottom:10px;}
+.topnav-groups{display:flex;flex-wrap:wrap;gap:16px;}
+.topnav-group{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.topnav-group-label{font-size:11px;color:#94a3b8;font-weight:600;white-space:nowrap;letter-spacing:1px;}
+.topnav-sep{width:1px;height:20px;background:#e2e8f0;margin:0 2px;flex-shrink:0;}
+.topnav-link{display:inline-block;font-size:13px;color:#64748b;text-decoration:none;padding:3px 10px;border-radius:6px;border:1px solid transparent;transition:all .15s;line-height:1.4;white-space:nowrap;}
+.topnav-link:hover{background:#e2e8f0;color:#1e293b;}
+.topnav-link.active{background:#eff6ff;color:#3b82f6;border-color:#bfdbfe;font-weight:600;}
+.topnav-link.flag{color:#dc2626;}
+.topnav-link.flag:hover{background:#fef2f2;}
+.topnav-link.flag.active{background:#fef2f2;border-color:#fca5a5;}
+.topnav-extras{display:flex;align-items:center;gap:6px;margin-left:auto;}
 
 /* ---- Schedule ---- */
 .schedule{background:#fff;border-radius:10px;padding:20px 24px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.06);}
@@ -59,7 +59,7 @@ body{
 .section-body{background:#fff;border-radius:0 0 10px 10px;box-shadow:0 1px 3px rgba(0,0,0,.06);}
 
 /* ---- Question Card ---- */
-.question{padding:20px 24px;border-bottom:1px solid #f1f5f9;scroll-margin-top:80px;}
+.question{padding:20px 24px;border-bottom:1px solid #f1f5f9;scroll-margin-top:120px;}
 .question:last-child{border-bottom:none;}
 .question-title{font-size:15px;font-weight:600;color:#1e293b;margin-bottom:10px;line-height:1.6;}
 .question-title .q-num{color:#3b82f6;margin-right:6px;}
@@ -74,6 +74,20 @@ body{
 .followup-tag.stuck{background:#fef2f2;color:#dc2626;}
 .followup-text{color:#64748b;font-size:13px;}
 
+/* ---- Progressive levels (campus recruit) ---- */
+.progressive{margin:8px 0 12px 0;}
+.prog-level{display:flex;align-items:flex-start;gap:8px;padding:6px 0 6px 0;border-left:2px solid #e2e8f0;margin-left:4px;padding-left:12px;}
+.prog-level+.prog-level{margin-top:2px;}
+.prog-tag{font-size:11px;padding:1px 8px;border-radius:10px;font-weight:600;white-space:nowrap;flex-shrink:0;}
+.prog-tag.L1{background:#eff6ff;color:#3b82f6;}
+.prog-tag.L2{background:#fef3c7;color:#d97706;}
+.prog-tag.L3{background:#fce7f3;color:#be185d;}
+.prog-desc{font-size:14px;color:#374151;line-height:1.6;}
+
+/* ---- Score reference (campus recruit) ---- */
+.score-ref{background:#f8fafc;border-radius:8px;padding:12px 16px;margin-bottom:12px;font-size:12px;color:#64748b;line-height:1.8;}
+.score-ref strong{color:#475569;}
+
 /* ---- Notes textarea ---- */
 .notes-area{width:100%;min-height:60px;border:1px dashed #d1d5db;border-radius:6px;padding:10px 12px;font-size:13px;font-family:inherit;color:#374151;resize:vertical;transition:border-color .2s;background:#fafafa;line-height:1.6;}
 .notes-area:focus{outline:none;border-color:#3b82f6;background:#fff;box-shadow:0 0 0 2px rgba(59,130,246,.1);}
@@ -82,7 +96,7 @@ body{
 .notes-label::before{content:'✏️';}
 
 /* ---- Red Flags ---- */
-.red-flags{background:#fff;border-radius:10px;padding:20px 24px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.06);border-left:4px solid #ef4444;scroll-margin-top:80px;}
+.red-flags{background:#fff;border-radius:10px;padding:20px 24px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.06);border-left:4px solid #ef4444;scroll-margin-top:120px;}
 .red-flags h2{font-size:15px;font-weight:600;color:#dc2626;margin-bottom:12px;letter-spacing:1px;}
 .red-flags table{width:100%;border-collapse:collapse;font-size:13px;}
 .red-flags th,.red-flags td{padding:8px 12px;text-align:left;border-bottom:1px solid #fef2f2;}
@@ -99,8 +113,7 @@ body{
   body{background:#fff;}
   .header{position:static;box-shadow:none;background:#1e293b;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
   .header-actions{display:none;}
-  .sidebar{display:none;}
-  .layout{display:block;}
+  .topnav{display:none;}
   .main{padding:24px 0;}
   .notes-area{border:1px solid #d1d5db;min-height:80px;}
   .section-body,.schedule,.red-flags,.overall-notes{box-shadow:none;break-inside:avoid;}
@@ -108,10 +121,11 @@ body{
 }
 
 /* ---- Mobile ---- */
-@media(max-width:860px){
-  .sidebar{display:none;}
-  .layout{display:block;}
-  .main{padding:16px;}
+@media(max-width:640px){
+  .main{padding:12px;}
+  .topnav-groups{gap:8px;}
+  .topnav-sep{display:none;}
+  .topnav-group{width:100%;}
 }
 </style>
 </head>
@@ -136,88 +150,108 @@ body{
   </div>
 </div>
 
-<div class="layout">
-
-  <!-- 左侧导航: 按维度分组，每个链接含编号+关键词，带 data-target 指向问题 id -->
-  <nav class="sidebar">
-    <div class="sidebar-nav">
-      {{sidebar_nav}}
+<!-- 顶部导航（全宽固定） -->
+<nav class="topnav">
+  <div class="topnav-inner">
+    <div class="topnav-groups">
+      {{topnav_content}}
       <!--
-      <div class="nav-section">
-        <div class="nav-section-title">专业能力</div>
-        <a class="nav-link" href="#q1" data-target="q1">Q1 关键词摘要</a>
-        <a class="nav-link" href="#q2" data-target="q2">Q2 关键词摘要</a>
+      示例结构：
+      <div class="topnav-group">
+        <span class="topnav-group-label">专业能力</span>
+        <a class="topnav-link" href="#q1" data-target="q1">Q1 关键词</a>
+        <a class="topnav-link" href="#q2" data-target="q2">Q2 关键词</a>
       </div>
-      <div class="nav-section">
-        <div class="nav-section-title">业务知识</div>
-        <a class="nav-link" href="#q3" data-target="q3">Q3 关键词摘要</a>
+      <div class="topnav-sep"></div>
+      <div class="topnav-group">
+        <span class="topnav-group-label">业务知识</span>
+        <a class="topnav-link" href="#q3" data-target="q3">Q3 关键词</a>
       </div>
-      ... 依此类推 ...
-      <div class="nav-divider"></div>
-      <a class="nav-link flag" href="#red-flags" data-target="red-flags">🚩 红旗清单</a>
-      <a class="nav-link" href="#overall" data-target="overall">📝 综合评价</a>
+      <div class="topnav-sep"></div>
+      <div class="topnav-extras">
+        <a class="topnav-link flag" href="#red-flags" data-target="red-flags">🚩 红旗</a>
+        <a class="topnav-link" href="#overall" data-target="overall">📝 评价</a>
+      </div>
       -->
     </div>
-  </nav>
-
-  <!-- 主内容区 -->
-  <div class="main">
-
-    <!-- 面试节奏 -->
-    <div class="schedule">
-      <h2>面试节奏</h2>
-      <table>
-        <tr><th>阶段</th><th>时间</th><th>内容</th><th>备注</th></tr>
-        {{schedule_rows}}
-      </table>
-    </div>
-
-    <!-- 各维度问题区块: 按维度重复 section，每个 question 必须带 id="q{N}" -->
-    {{sections}}
-    <!--
-    <div class="section">
-      <div class="section-header">
-        <h2>一、专业能力与经验</h2>
-        <span class="badge">~9min</span>
-      </div>
-      <div class="section-body">
-        <div class="question" id="q1">
-          <div class="question-title"><span class="q-num">Q1</span>问题内容</div>
-          <div class="question-details">
-            <div class="detail-item"><strong>关联简历:</strong> xxx</div>
-            <div class="detail-item"><strong>考察意图:</strong> xxx</div>
-            <div class="detail-item full"><strong>期望要点:</strong> xxx</div>
-          </div>
-          <div class="followup">
-            <div class="followup-row"><span class="followup-tag good">顺利</span><span class="followup-text">追问方向...</span></div>
-            <div class="followup-row"><span class="followup-tag stuck">受阻</span><span class="followup-text">引导方向...</span></div>
-          </div>
-          <div class="notes-label">记录</div>
-          <textarea class="notes-area" placeholder="在此记录候选人回答要点和观察..."></textarea>
-        </div>
-      </div>
-    </div>
-    -->
-
-    <!-- 红旗追问清单 -->
-    <div class="red-flags" id="red-flags">
-      <h2>🚩 红旗追问清单</h2>
-      <table>
-        <tr><th></th><th>简历疑点</th><th>追问问题</th><th>判断标准</th></tr>
-        {{red_flag_rows}}
-      </table>
-    </div>
-
-    <!-- 综合评价 -->
-    <div class="overall-notes" id="overall">
-      <h2>综合评价</h2>
-      <textarea class="notes-area" placeholder="面试结束后记录综合评价、是否推荐、关键判断依据..."></textarea>
-    </div>
-
   </div>
+</nav>
+
+<div class="fixed-spacer"></div>
+<div class="main">
+
+  <!-- 面试节奏 -->
+  <div class="schedule">
+    <h2>面试节奏</h2>
+    <table>
+      <tr><th>阶段</th><th>时间</th><th>内容</th><th>备注</th></tr>
+      {{schedule_rows}}
+    </table>
+  </div>
+
+  <!-- 各维度问题区块: 按维度重复 section，每个 question 必须带 id="q{N}" -->
+  {{sections}}
+  <!--
+  <div class="section">
+    <div class="section-header">
+      <h2>一、专业能力与经验</h2>
+      <span class="badge">~9min</span>
+    </div>
+    <div class="section-body">
+      <div class="question" id="q1">
+        <div class="question-title"><span class="q-num">Q1</span>问题内容</div>
+        <div class="question-details">
+          <div class="detail-item"><strong>关联简历:</strong> xxx</div>
+          <div class="detail-item"><strong>考察意图:</strong> xxx</div>
+          <div class="detail-item full"><strong>期望要点:</strong> xxx</div>
+        </div>
+        <div class="followup">
+          <div class="followup-row"><span class="followup-tag good">顺利</span><span class="followup-text">追问方向...</span></div>
+          <div class="followup-row"><span class="followup-tag stuck">受阻</span><span class="followup-text">引导方向...</span></div>
+        </div>
+        <div class="notes-label">记录</div>
+        <textarea class="notes-area" placeholder="在此记录候选人回答要点和观察..."></textarea>
+      </div>
+    </div>
+  </div>
+  -->
+
+  <!-- 红旗追问清单 -->
+  <div class="red-flags" id="red-flags">
+    <h2>🚩 红旗追问清单</h2>
+    <table>
+      <tr><th></th><th>简历疑点</th><th>追问问题</th><th>判断标准</th></tr>
+      {{red_flag_rows}}
+    </table>
+  </div>
+
+  <!-- 综合评价 -->
+  <div class="overall-notes" id="overall">
+    <h2>综合评价</h2>
+    <textarea class="notes-area" placeholder="面试结束后记录综合评价、是否推荐、关键判断依据..."></textarea>
+  </div>
+
 </div>
 
 <script>
+// 动态计算固定栏位置
+(function(){
+  var header=document.querySelector('.header');
+  var topnav=document.querySelector('.topnav');
+  var spacer=document.querySelector('.fixed-spacer');
+  function layout(){
+    var hH=header.offsetHeight;
+    topnav.style.top=hH+'px';
+    var tH=topnav.offsetHeight;
+    spacer.style.height=(hH+tH+12)+'px';
+    document.querySelectorAll('.question,.red-flags,.overall-notes').forEach(function(el){
+      el.style.scrollMarginTop=(hH+tH+16)+'px';
+    });
+  }
+  layout();
+  window.addEventListener('resize',layout);
+})();
+
 function saveWithNotes(){
   document.querySelectorAll('.notes-area').forEach(function(t){
     t.textContent=t.value;
@@ -237,9 +271,9 @@ function clearAllNotes(){
   document.querySelectorAll('.notes-area').forEach(function(t){t.value='';t.textContent='';});
 }
 
-// Scroll-aware sidebar highlighting
+// Scroll-aware topnav highlighting
 (function(){
-  var links=document.querySelectorAll('.sidebar-nav a[data-target]');
+  var links=document.querySelectorAll('.topnav a[data-target]');
   var targets=[];
   links.forEach(function(a){
     var el=document.getElementById(a.dataset.target);
