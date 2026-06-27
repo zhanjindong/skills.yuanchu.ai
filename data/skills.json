@@ -349,6 +349,37 @@
     "updatedAt": "2026-03-28"
   },
   {
+    "id": "auto-translator",
+    "name": "自动选译",
+    "icon": "🛰️",
+    "summary": "自动扫描 AI 信息源，发现并翻译最值得读的技术文章",
+    "description": "skills/auto-translator/README.md",
+    "category": "writing",
+    "tags": [
+      "translation",
+      "ai",
+      "automation",
+      "content-curation"
+    ],
+    "author": {
+      "name": "Jackie Zhan",
+      "link": "https://yuanchu.ai"
+    },
+    "files": [
+      "SKILL.md"
+    ],
+    "examples": [
+      {
+        "input": "/auto-translator 自动找篇 Agent 方向的文章翻译",
+        "output": "从一线大厂博客/论文/社区扫描近期文章，按五维评分自动选定一篇，翻译成中文 HTML 并同步到 yuanchu.ai/tech/"
+      }
+    ],
+    "links": {},
+    "featured": false,
+    "createdAt": "2026-06-27",
+    "updatedAt": "2026-06-27"
+  },
+  {
     "id": "regex-generator",
     "name": "正则表达式生成",
     "icon": "🔣",
