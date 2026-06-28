@@ -161,7 +161,7 @@ list_html = f"""<!DOCTYPE html>
         <div class="stats">
             <div class="stat"><div class="num">{read_hours}</div><div class="label">Hours</div></div>
             <div class="stat"><div class="num">{read_days}</div><div class="label">Days</div></div>
-            <div class="stat"><div class="num">{total_books}</div><div class="label">Books w/ Notes</div></div>
+            <div class="stat"><div class="num">{total_books}</div><div class="label">Books</div></div>
             <div class="stat"><div class="num">{total_notes}</div><div class="label">Notes</div></div>
         </div>
         <p class="prefer">偏好领域　<span>{' · '.join(prefer)}</span></p>
@@ -189,8 +189,18 @@ detail_css = BASE_CSS + """
         .book-link:hover { color: #1a1a1a; }
         .intro2 { font-size: 14px; line-height: 1.7; color: rgba(0,0,0,0.4); margin: 22px 0 50px;
             padding: 18px 22px; background: rgba(0,0,0,0.02); border-radius: 6px; }
-        .group-label { font-size: 13px; color: rgba(0,0,0,0.4); letter-spacing: 6px;
-            text-transform: uppercase; margin: 50px 0 26px; }
+        .tabs { display: flex; gap: 36px; border-bottom: 1px solid rgba(0,0,0,0.08);
+            margin: 44px 0 30px; }
+        .tab { background: none; border: none; padding: 0 0 14px; font-family: inherit;
+            font-size: 15px; letter-spacing: 3px; color: rgba(0,0,0,0.38); cursor: pointer;
+            position: relative; transition: color 0.25s; }
+        .tab .cnt { font-size: 12px; letter-spacing: 0; color: rgba(0,0,0,0.28); margin-left: 5px; }
+        .tab:hover { color: rgba(0,0,0,0.65); }
+        .tab.active { color: #1a1a1a; }
+        .tab.active::after { content: ''; position: absolute; bottom: -1px; left: 0;
+            width: 100%; height: 2px; background: #1a1a1a; }
+        .panel { display: none; }
+        .panel.active { display: block; }
         .notes { display: flex; flex-direction: column; gap: 24px; }
         .note { display: block; text-decoration: none; color: inherit; position: relative;
             transition: background 0.25s, padding 0.25s; border-radius: 0 4px 4px 0; }
@@ -244,13 +254,25 @@ for b in books:
             f'<a class="note mark" href="{link}"><div class="note-text">{text}</div>'
             f'<span class="jump">在微信读书中查看 ↗</span></a>')
 
-    body_parts = []
+    # 想法 / 划线 两个 tab，第一个默认激活；空的 tab 不显示
+    tab_defs = []
     if thought_html:
-        body_parts.append('<div class="group-label">我的想法</div><div class="notes">' + "\n".join(thought_html) + '</div>')
+        tab_defs.append(("我的想法", thought_html))
     if mark_html:
-        body_parts.append('<div class="group-label">划线</div><div class="notes">' + "\n".join(mark_html) + '</div>')
-    if not body_parts:
-        body_parts.append('<div class="empty">这本书暂无可展示的划线或想法（可能只有书签）。</div>')
+        tab_defs.append(("划线", mark_html))
+
+    if not tab_defs:
+        body_html = '<div class="empty">这本书暂无可展示的划线或想法（可能只有书签）。</div>'
+    else:
+        tabs, panels = [], []
+        for i, (label, notes) in enumerate(tab_defs):
+            act = " active" if i == 0 else ""
+            tabs.append(f'<button class="tab{act}" data-tab="panel-{i}">{label}'
+                        f'<span class="cnt">{len(notes)}</span></button>')
+            panels.append(f'<div class="panel{act}" id="panel-{i}"><div class="notes">'
+                          + "\n".join(notes) + '</div></div>')
+        body_html = ('<div class="tabs">' + "".join(tabs) + '</div>'
+                     + "".join(panels))
 
     cover_html = f'<img class="cover" src="{cover}" alt="{title}" loading="lazy">' if cover else ''
     intro_html = f'<p class="intro2">{intro}</p>' if intro else ''
@@ -276,9 +298,19 @@ for b in books:
             </div>
         </div>
         {intro_html}
-        {''.join(body_parts)}
+        {body_html}
         {FOOTER}
     </div>
+    <script>
+        document.querySelectorAll('.tab').forEach(function (btn) {{
+            btn.addEventListener('click', function () {{
+                document.querySelectorAll('.tab').forEach(function (x) {{ x.classList.remove('active'); }});
+                document.querySelectorAll('.panel').forEach(function (x) {{ x.classList.remove('active'); }});
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.tab).classList.add('active');
+            }});
+        }});
+    </script>
     <script defer src="/tracker.js"></script>
 </body>
 </html>
