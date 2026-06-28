@@ -91,6 +91,14 @@ def book_page_name(b):
 def cnt(b):
     return (b.get("noteCount") or 0) + (b.get("bookmarkCount") or 0)
 
+def count_marks(b):
+    """划线条数（按实际有文本的划线计）。"""
+    return sum(1 for m in (b.get("marks") or []) if (m.get("text") or "").strip())
+
+def count_thoughts(b):
+    """想法条数（按实际有内容的想法计）。"""
+    return sum(1 for t in (b.get("thoughts") or []) if (t.get("content") or "").strip())
+
 # ---------- 列表页（书架形式） ----------
 books = d.get("details", [])
 items = []
@@ -98,8 +106,8 @@ for b in books:
     title = esc(b.get("title"))
     author = esc(b.get("author"))
     cover = esc(b.get("cover"))
-    nmark = b.get("bookmarkCount") or len(b.get("marks", []))
-    nnote = b.get("noteCount") or len(b.get("thoughts", []))
+    nmark = count_marks(b)
+    nnote = count_thoughts(b)
     cover_html = (f'<img class="cover" src="{cover}" alt="{title}" loading="lazy">'
                   if cover else '<div class="cover cover-ph"></div>')
     items.append(f"""            <a href="{book_page_name(b)}" class="book-card" title="{title}">
@@ -250,8 +258,8 @@ for b in books:
     intro = esc(b.get("intro"))
     if len(intro) > 160:
         intro = intro[:160] + "…"
-    nmark = b.get("bookmarkCount") or len(b.get("marks", []))
-    nnote = b.get("noteCount") or len(b.get("thoughts", []))
+    nmark = count_marks(b)
+    nnote = count_thoughts(b)
     deeplink = f"weread://reading?bId={bid}"
     mp = is_mp(bid)
 
