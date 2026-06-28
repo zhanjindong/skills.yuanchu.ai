@@ -100,7 +100,8 @@ def count_thoughts(b):
     return sum(1 for t in (b.get("thoughts") or []) if (t.get("content") or "").strip())
 
 # ---------- 列表页（书架形式） ----------
-books = d.get("details", [])
+# 按最近活动时间（最近阅读/划线/想法）降序，最近的排在最前
+books = sorted(d.get("details", []), key=lambda b: b.get("sort") or 0, reverse=True)
 items = []
 for b in books:
     title = esc(b.get("title"))

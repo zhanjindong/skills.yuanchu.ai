@@ -114,6 +114,8 @@ for b in sorted(books, key=total_notes, reverse=True):
         "noteCount": b.get("noteCount"),
         "bookmarkCount": b.get("bookmarkCount"),
         "reviewCount": b.get("reviewCount"),
+        # 最近活动时间（最近一次划线/想法），用于书架按最近阅读排序
+        "sort": b.get("sort"),
         "marks": marks,
         "thoughts": thoughts,
     })
