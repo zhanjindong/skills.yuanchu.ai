@@ -26,8 +26,19 @@ for _b in d.get("details", []):
     if USER_VID:
         break
 
-def mark_link(bid, chapter_uid, rng):
-    """构造跳转到具体划线/想法位置的深链；逐级降级。"""
+def is_mp(bid):
+    """是否公众号类'书'（MP_WXS_*）。"""
+    return bool(bid) and str(bid).startswith("MP_")
+
+
+def mark_link(bid, chapter_uid, rng, mp=False):
+    """构造跳转到具体划线/想法位置的深链；逐级降级。
+    公众号：网关不支持 bestbookmark 定位；有 chapterUid 时给章节级（可落到文章），
+    没有 chapterUid（公众号划线即如此）则返回 None，表示无法定位、不放跳转。"""
+    if mp:
+        if chapter_uid:
+            return f"weread://reading?bId={bid}&chapterUid={chapter_uid}"
+        return None
     if chapter_uid and rng and "-" in str(rng):
         a, _, b2 = str(rng).partition("-")
         return (f"weread://bestbookmark?bookId={bid}&chapterUid={chapter_uid}"
@@ -217,6 +228,16 @@ detail_css = BASE_CSS + """
         .jump { display: inline-block; font-size: 12px; color: rgba(0,0,0,0.0);
             letter-spacing: 0.5px; margin-top: 8px; transition: color 0.25s; }
         .note:hover .jump { color: rgba(0,0,0,0.4); }
+        /* 公众号笔记来源文章标题 */
+        .from-article { font-size: 12px; color: rgba(0,0,0,0.4); letter-spacing: 0.5px;
+            margin-bottom: 8px; }
+        .from-article::before { content: '\\6765\\81ea\\300a'; }
+        .from-article::after { content: '\\300b'; }
+        /* 不可定位的笔记（公众号划线）：不显示可点击态 */
+        .note.noloc { cursor: default; }
+        .note.noloc:hover { background: none; }
+        .loc-notice { font-size: 12px; color: rgba(0,0,0,0.4); letter-spacing: 0.5px;
+            padding: 10px 14px; margin-bottom: 6px; background: rgba(0,0,0,0.03); border-radius: 4px; }
         .empty { font-size: 15px; color: rgba(0,0,0,0.35); padding: 40px 0; }
         @media (max-width: 768px) { .content { padding: 30px 22px; } h1 { font-size: 26px; letter-spacing: 4px; } }
 """
@@ -232,6 +253,7 @@ for b in books:
     nmark = b.get("bookmarkCount") or len(b.get("marks", []))
     nnote = b.get("noteCount") or len(b.get("thoughts", []))
     deeplink = f"weread://reading?bId={bid}"
+    mp = is_mp(bid)
 
     thought_html = []
     for t in (b.get("thoughts") or []):
@@ -240,35 +262,51 @@ for b in books:
             continue
         abstract = esc(t.get("abstract"))
         ab = f'<div class="ref">{abstract}</div>' if abstract else ""
-        link = mark_link(bid, t.get("chapterUid"), t.get("range"))
-        thought_html.append(
-            f'<a class="note thought" href="{link}"><div class="note-text">{content}</div>{ab}'
-            f'<span class="jump">在微信读书中查看 ↗</span></a>')
+        # 公众号：显示来源文章标题
+        src = f'<div class="from-article">{esc(t.get("mpTitle"))}</div>' if (mp and t.get("mpTitle")) else ""
+        link = mark_link(bid, t.get("chapterUid"), t.get("range"), mp)
+        if link:
+            thought_html.append(
+                f'<a class="note thought" href="{link}">{src}<div class="note-text">{content}</div>{ab}'
+                f'<span class="jump">在微信读书中查看 ↗</span></a>')
+        else:
+            thought_html.append(
+                f'<div class="note thought noloc">{src}<div class="note-text">{content}</div>{ab}</div>')
     mark_html = []
+    # 公众号划线无法定位到文章，整组顶部给一条说明，且不放跳转
+    if mp and (b.get("marks")):
+        mark_html.append('<div class="loc-notice">公众号划线暂无法定位到具体文章，点击不跳转</div>')
     for m in (b.get("marks") or []):
         text = esc(m.get("text"))
         if not text:
             continue
-        link = mark_link(bid, m.get("chapterUid"), m.get("range"))
-        mark_html.append(
-            f'<a class="note mark" href="{link}"><div class="note-text">{text}</div>'
-            f'<span class="jump">在微信读书中查看 ↗</span></a>')
+        link = mark_link(bid, m.get("chapterUid"), m.get("range"), mp)
+        if link:
+            mark_html.append(
+                f'<a class="note mark" href="{link}"><div class="note-text">{text}</div>'
+                f'<span class="jump">在微信读书中查看 ↗</span></a>')
+        else:
+            mark_html.append(
+                f'<div class="note mark noloc"><div class="note-text">{text}</div></div>')
 
     # 想法 / 划线 两个 tab，第一个默认激活；空的 tab 不显示
+    # 计数排除非笔记元素（如公众号划线的说明条）
+    n_thoughts = len(thought_html)
+    n_marks = sum(1 for x in mark_html if 'class="note mark' in x)
     tab_defs = []
     if thought_html:
-        tab_defs.append(("我的想法", thought_html))
+        tab_defs.append(("我的想法", thought_html, n_thoughts))
     if mark_html:
-        tab_defs.append(("划线", mark_html))
+        tab_defs.append(("划线", mark_html, n_marks))
 
     if not tab_defs:
         body_html = '<div class="empty">这本书暂无可展示的划线或想法（可能只有书签）。</div>'
     else:
         tabs, panels = [], []
-        for i, (label, notes) in enumerate(tab_defs):
+        for i, (label, notes, count) in enumerate(tab_defs):
             act = " active" if i == 0 else ""
             tabs.append(f'<button class="tab{act}" data-tab="panel-{i}">{label}'
-                        f'<span class="cnt">{len(notes)}</span></button>')
+                        f'<span class="cnt">{count}</span></button>')
             panels.append(f'<div class="panel{act}" id="panel-{i}"><div class="notes">'
                           + "\n".join(notes) + '</div></div>')
         body_html = ('<div class="tabs">' + "".join(tabs) + '</div>'

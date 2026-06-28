@@ -84,19 +84,26 @@ for b in sorted(books, key=total_notes, reverse=True):
         "chapter": m.get("chapterTitle") or m.get("chapterName") or "",
         "chapterUid": m.get("chapterUid"),
         "range": m.get("range"),
+        "bookmarkId": m.get("bookmarkId"),
         "createTime": m.get("createTime"),
     } for m in (bm.get("updated") or [])]
 
     mine = call("/review/list/mine", bookid=bid, count=50)
-    thoughts = [{
-        "content": (r.get("review", {}) or {}).get("content") or "",
-        "abstract": (r.get("review", {}) or {}).get("abstract") or "",
-        "chapter": (r.get("review", {}) or {}).get("chapterTitle") or "",
-        "chapterUid": (r.get("review", {}) or {}).get("chapterUid"),
-        "range": (r.get("review", {}) or {}).get("range"),
-        "userVid": (r.get("review", {}) or {}).get("userVid"),
-        "createTime": (r.get("review", {}) or {}).get("createTime"),
-    } for r in (mine.get("reviews") or [])]
+    thoughts = []
+    for r in (mine.get("reviews") or []):
+        rv = r.get("review", {}) or {}
+        mp = rv.get("refMpInfo") or {}
+        thoughts.append({
+            "content": rv.get("content") or "",
+            "abstract": rv.get("abstract") or "",
+            "chapter": rv.get("chapterTitle") or "",
+            "chapterUid": rv.get("chapterUid"),
+            "range": rv.get("range"),
+            "userVid": rv.get("userVid"),
+            # 公众号笔记的来源文章标题（普通书为空）
+            "mpTitle": mp.get("title") or "",
+            "createTime": rv.get("createTime"),
+        })
 
     out["details"].append({
         "bookId": bid,
