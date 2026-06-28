@@ -660,5 +660,39 @@
     "featured": true,
     "createdAt": "2026-04-14",
     "updatedAt": "2026-04-14"
+  },
+  {
+    "id": "weread-notes-sync",
+    "name": "读书笔记同步",
+    "icon": "📖",
+    "summary": "从微信读书拉取划线与想法，生成书架与笔记页，深链跳回 App",
+    "description": "skills/weread-notes-sync/README.md",
+    "category": "productivity",
+    "tags": [
+      "weread",
+      "reading",
+      "notes",
+      "static-site",
+      "automation"
+    ],
+    "author": {
+      "name": "Jackie Zhan",
+      "link": "https://yuanchu.ai"
+    },
+    "files": [
+      "SKILL.md",
+      "scripts/fetch_weread.py",
+      "scripts/gen_site.py"
+    ],
+    "examples": [
+      {
+        "input": "更新读书笔记",
+        "output": "从微信读书拉取全部划线与想法，重新生成书架列表页和每本书的笔记详情页（含深链）"
+      }
+    ],
+    "links": {},
+    "featured": false,
+    "createdAt": "2026-06-28",
+    "updatedAt": "2026-06-28"
   }
 ]
